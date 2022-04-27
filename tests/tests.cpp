@@ -4,6 +4,8 @@
 #include "../person.h"
 #include "../passenger_classes.h"
 #include "../worker_classes.h"
+#include "../planes.h" //dodalem te dwa pliki do testow
+#include "../flight.h" //dopisz sobie w launch.json
 
 #include <sstream>
 
@@ -99,3 +101,35 @@ TEST_CASE("Simple classes tests", "[tests]")
         CHECK(p7.getZl() == 41);
         CHECK(p7.getGr() == 0);
     }
+}
+
+TEST_CASE("planes") {
+
+    SECTION("light plane getters") {
+        Light_plane lp("AAAA");
+        CHECK(lp.get_plane_name() == "AAAA");
+        CHECK(lp.get_sitting_places() == 30);
+        CHECK(lp.get_price_multiplier()==1.02f);
+    }
+
+    SECTION("light plane getters") {
+        Small_plane lp("AAAA");
+        CHECK(lp.get_plane_name() == "AAAA");
+        CHECK(lp.get_sitting_places() == 70);
+        CHECK(lp.get_price_multiplier()==1.018f);
+    }
+
+    SECTION("medium plane getters") {
+        Medium_plane lp("AAAA");
+        CHECK(lp.get_plane_name() == "AAAA");
+        CHECK(lp.get_sitting_places() == 120);
+        CHECK(lp.get_price_multiplier()==1.013f);
+    }
+
+        SECTION("big plane getters") {
+        Big_plane lp("AAAA");
+        CHECK(lp.get_plane_name() == "AAAA");
+        CHECK(lp.get_sitting_places() == 200);
+        CHECK(lp.get_price_multiplier()==1.01f);
+    }
+}
