@@ -10,7 +10,7 @@ class Ticket   // <-- jakies male samoloty moga nie miec podzialu na pierwsza i 
 protected:
     unsigned int number;
     City source;
-    City destination; 
+    City destination;
     Date date;
     Price base_price;  // <-- to by bylo wyliczane na podstawie kilometrow miedzy miastammi, a ta metoda nizej moglaby to wlasnie liczyc
     void calculateBasePrice(); 

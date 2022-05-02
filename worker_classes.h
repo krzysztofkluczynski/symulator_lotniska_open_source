@@ -70,6 +70,4 @@ class Other: public Worker
         virtual unsigned int passengersPerWorker() override;
 
 };
-
-
 #endif
