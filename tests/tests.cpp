@@ -7,6 +7,8 @@
 #include "../planes.h" //dodalem te dwa pliki do testow
 #include "../flight.h" //dopisz sobie w launch.json
 
+#include "../exceptions.h" // <---- TO TEZ SE DOPISZ
+
 #include <sstream>
 
 TEST_CASE("Simple classes tests", "[tests]") 
@@ -39,6 +41,27 @@ TEST_CASE("Simple classes tests", "[tests]")
         CHECK_THROWS(date2.setDay(30));
         CHECK_THROWS(date4.setMonth(4));
         CHECK_THROWS(date4.setYear(2015));
+
+        Date date5(31, 12, 2020);
+        Date date6(31, 3, 2000);
+        Date date7(30, 9, 2019);
+        date5++;
+        date6++;
+        date7++;
+
+        CHECK(date5.getDay() == 1);
+        CHECK(date5.getMonth() == 1);
+        CHECK(date5.getYear() == 2021);
+
+        CHECK(date6.getDay() == 1);
+        CHECK(date6.getMonth() == 4);
+        CHECK(date6.getYear() == 2000);
+
+        CHECK(date7.getDay() == 1);
+        CHECK(date7.getMonth() == 10);
+        CHECK(date7.getYear() == 2019);
+
+
     }
 
     SECTION("person tests")
@@ -100,6 +123,10 @@ TEST_CASE("Simple classes tests", "[tests]")
         Price p7 = p2 * x;
         CHECK(p7.getZl() == 41);
         CHECK(p7.getGr() == 0);
+    }
+    SECTION("passengers tests")
+    {
+        //Passenger p1("anna", "nowak", "12345678901"); <- jeszcze nie ma implementacji w cpp
     }
 }
 
