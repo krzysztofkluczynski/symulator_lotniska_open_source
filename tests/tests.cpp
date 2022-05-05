@@ -160,3 +160,18 @@ TEST_CASE("planes") {
         CHECK(lp.get_price_multiplier()==1.01f);
     }
 }
+
+TEST_CASE("flight") {
+    Light_plane plane1("AAAA");
+    Flight flight(plane1);
+
+    CHECK(flight.passenger_number() == 0)
+    CHECK(flight.workers_number() == 0)
+
+    
+    
+    
+
+
+
+}

@@ -13,20 +13,20 @@
 
 class Flight {
     private:
-        std::unique_ptr<Planes> plane;
-        std::vector<FirstClass> first_class;
-        std::vector<SecondClass> second_class;
+        Planes& plane;
+        std::list<std::unique_ptr<Passenger>> passenger;
         std::list<std::unique_ptr<Worker>> workers;
     public:
-        Flight(std::unique_ptr<Planes> plane,
-        std::vector<FirstClass> first_class = {},
-        std::vector<SecondClass> second_class = {},
+        Flight(Planes& plane,
+        std::list<std::unique_ptr<Passenger>> passenger = {},
         std::list<std::unique_ptr<Worker>> workers = {});
 
         std::unique_ptr<Planes> get_plane();
         std::vector<FirstClass> get_first_class();
         std::vector<SecondClass> get_second_class();
         std::list<std::unique_ptr<Worker>> get_workers();
+
+        void set_plane(Planes& plane);
 
         void add_stewardess(Stewardess); // tu pytanie czy to maja byc 4 metody czy jedna
         void add_pilot(Pilot); //latwiej zaimplementowac 4 
@@ -36,8 +36,11 @@ class Flight {
         void add_first_class(FirstClass); // analogiczne pytanie jak wyzej
         void add_second_class(SecondClass);
 
+        int passengers_number(); // ilu pasazerow
+        int workers_number();
+
         void remove_passenger(int pesel); // usuwanie pasazera
-        void check_passenger(int pesel); // sprawdzenie czy pasazer juz ma bilet
+        bool check_passenger(int pesel); // sprawdzenie czy pasazer juz ma bilet
 
 
 };

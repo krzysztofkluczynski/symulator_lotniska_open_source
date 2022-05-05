@@ -2,6 +2,14 @@
 #include <math.h>
 #include <map>
 
+#include "date.h"
+#include "price.h"
+#include "person.h"
+#include "passenger_classes.h"
+#include "worker_classes.h"
+#include "planes.h" //dodalem te dwa pliki do testow
+#include "flight.h" //dopisz sobie w launch.json
+
 
 using namespace std;
 
@@ -42,6 +50,10 @@ double geo_distance(string city1, string city2) {
     }
 
 int main() {
-    cout << geo_distance("Wroclaw", "Warszawa");
+    //cout << geo_distance("Wroclaw", "Warszawa");
+    Light_plane light("alpha");
+    Medium_plane medium("beta");
+    Flight flight(light);
+    flight.set_plane(medium);
     return 0;
 }
