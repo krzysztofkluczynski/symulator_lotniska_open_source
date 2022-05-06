@@ -9,6 +9,7 @@
 
 #include "../exceptions.h" // <---- TO TEZ SE DOPISZ
 
+
 #include <sstream>
 
 TEST_CASE("Simple classes tests", "[tests]") 
@@ -159,19 +160,4 @@ TEST_CASE("planes") {
         CHECK(lp.get_sitting_places() == 200);
         CHECK(lp.get_price_multiplier()==1.01f);
     }
-}
-
-TEST_CASE("flight") {
-    Light_plane plane1("AAAA");
-    Flight flight(plane1);
-
-    CHECK(flight.passenger_number() == 0)
-    CHECK(flight.workers_number() == 0)
-
-    
-    
-    
-
-
-
 }
