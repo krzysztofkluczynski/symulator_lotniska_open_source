@@ -53,9 +53,14 @@ double geo_distance(string city1, string city2) {
 
 int main() {
     //cout << geo_distance("Wroclaw", "Warszawa");
-    Light_plane light("alpha");
-    Medium_plane medium("beta");
-    Flight flight(light);
-    flight.set_plane(medium);
+    // Light_plane light("alpha");
+    // Medium_plane medium("beta");
+    // Flight flight(light);
+    // flight.set_plane(medium);
+    string a = "aaaa";
+    string b = "aaaaa";
+    if (a == b) {
+        cout << "sasasa";
+    }
     return 0;
 }
