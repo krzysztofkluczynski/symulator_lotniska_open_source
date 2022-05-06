@@ -9,6 +9,7 @@
 
 #include "../exceptions.h" // <---- TO TEZ SE DOPISZ
 
+
 #include <sstream>
 
 TEST_CASE("Simple classes tests", "[tests]") 

@@ -28,7 +28,7 @@ class Flight {
         std::vector<SecondClass> get_second_class();
         std::list<std::unique_ptr<Worker>> get_workers();
 
-        void add_stewardess(Stewardess); // tu pytanie czy to maja byc 4 metody czy jedna
+        void add_stewardess(Stewardess); // tu pytanie czy to maja byc 4 metody czy jedna              //opinia: imo 4? ale nie wiem
         void add_pilot(Pilot); //latwiej zaimplementowac 4 
         void add_luggage_man(LuggageMan); // ale jako jedna tez pewnie sie da,
         void add_other(Other); // pytanie jak potrzebujemy potem do database
