@@ -32,7 +32,7 @@ using namespace std;
 //FirstClass::FirstClass(std::string p_name, std::string p_surname, std::string p_pesel, const FirstClassTicket& p_ticket)
 //: name(p_name), surname(p_surname), pesel(p_pesel), ticket(p_ticket) {}
 
-FirstClass::FirstClass(std::string name, std::string surname, std::string pasel, const FirstClassTicket& p_ticket)
+FirstClass::FirstClass(std::string name, std::string surname, std::string pesel, const FirstClassTicket& p_ticket)
 : Person(name, surname, pesel), ticket(p_ticket) {}
 
 City FirstClass::getSourceCity() const

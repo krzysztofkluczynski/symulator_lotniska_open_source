@@ -5,9 +5,12 @@
 #include "../passenger_classes.h"
 #include "../worker_classes.h"
 #include "../planes.h" //dodalem te dwa pliki do testow
-#include "../flight.h" //dopisz sobie w launch.json
+// #include "../flight.h" //dopisz sobie w launch.json
 
 #include "../exceptions.h" // <---- TO TEZ SE DOPISZ
+#include "../ticket.h"
+#include "../city.h"
+//dopisz sobie ticket.cpp w json
 
 
 #include <sstream>
@@ -146,7 +149,13 @@ TEST_CASE("Simple classes tests", "[tests]")
     }
     SECTION("passengers tests")
     {
-
+        FirstClassTicket first1(City("Dubai"), City("Warsaw"), Date(12, 12, 2020), 1);
+        FirstClass firstp("kuba", "kowal", "12345678910", first1);
+        CHECK(firstp.getName() == "kuba");
+        CHECK(firstp.getSurname() == "kowal");
+        CHECK(firstp.getPesel() == "12345678910");
+        CHECK(firstp.getSourceCity().getName() == "Dubai");
+        CHECK(firstp.getTicket().getDate().getDay() == 12);
     }
 
     SECTION("workers tests")
