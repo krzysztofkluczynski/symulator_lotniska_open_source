@@ -10,14 +10,15 @@ class Worker: public Person
         Price salary;
     public:
         Worker(std::string name, std::string surname, std::string pesel, const Price& salary = Price(3000, 0)); //domyslna wyplata 
-        ~Worker();
+        virtual ~Worker();
 
         Price getPrice() const;
         void setPrice(const Price& price);
 
-        virtual Price calculatePrice() const;   // <-- to pewnie do wyrzucenia, w tej klasie i pochodnych tez
+        virtual unsigned int passengersPerWorker() const = 0;
+        virtual std::string getSpeciality() const = 0;
 
-        virtual unsigned int passengersPerWorker() = 0;
+        friend std::ostream &operator<<(std::ostream& out, const Worker& worker);
 };
 
 class Stewardess: public Worker
@@ -27,9 +28,9 @@ class Stewardess: public Worker
     public:
         Stewardess(std::string name, std::string surname, std::string pesel, const Price& salary = Price(4000, 0));
 
-        virtual Price calculatePrice() const override;
+        unsigned int passengersPerWorker() const override;
+        std::string getSpeciality() const override;
 
-        virtual unsigned int passengersPerWorker() override;
 };
 
 class Pilot: public Worker
@@ -39,9 +40,9 @@ class Pilot: public Worker
     public:
         Pilot(std::string name, std::string surname, std::string pesel, const Price& salary = Price(6000, 0));
 
-        virtual Price calculatePrice() const override;
 
-        virtual unsigned int passengersPerWorker() override;
+        unsigned int passengersPerWorker() const override;
+        std::string getSpeciality() const override;
 
 };
 
@@ -52,10 +53,8 @@ class LuggageMan: public Worker
     public:
         LuggageMan(std::string name, std::string surname, std::string pesel, const Price& salary = Price(3500, 0));
 
-        virtual Price calculatePrice() const override;
-
-        virtual unsigned int passengersPerWorker() override;
-
+        unsigned int passengersPerWorker() const override;
+        std::string getSpeciality() const override;
 };
 
 class Other: public Worker
@@ -65,9 +64,9 @@ class Other: public Worker
     public:
         Other(std::string name, std::string surname, std::string pesel, const Price& salary = Price(3000, 0));
 
-        virtual Price calculatePrice() const override;
 
-        virtual unsigned int passengersPerWorker() override;
+        unsigned int passengersPerWorker() const override;
+        std::string getSpeciality() const override;
 
 };
 #endif

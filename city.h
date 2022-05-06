@@ -8,7 +8,8 @@ class City
     private:
         std::string name;
     public:
-        City();
+        City(std::string name);
+        std::string getName() const;
 };
 
 #endif 
