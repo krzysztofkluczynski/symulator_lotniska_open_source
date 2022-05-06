@@ -5,9 +5,12 @@
 #include "../passenger_classes.h"
 #include "../worker_classes.h"
 #include "../planes.h" //dodalem te dwa pliki do testow
-#include "../flight.h" //dopisz sobie w launch.json
+// #include "../flight.h" //dopisz sobie w launch.json
 
 #include "../exceptions.h" // <---- TO TEZ SE DOPISZ
+#include "../ticket.h"
+#include "../city.h"
+//dopisz sobie ticket.cpp w json
 
 
 #include <sstream>
@@ -125,9 +128,44 @@ TEST_CASE("Simple classes tests", "[tests]")
         CHECK(p7.getZl() == 41);
         CHECK(p7.getGr() == 0);
     }
+    SECTION("ticket tests")
+    {
+        FirstClassTicket first1(City("Dubai"), City("Warsaw"), Date(12, 12, 2020), 1);
+        CHECK(first1.getDate().getDay() == 12);
+        CHECK(first1.getDate().getMonth() == 12);
+        CHECK(first1.getDate().getYear() == 2020);
+        CHECK(first1.getNumber() == 1);
+        CHECK(first1.getSource().getName() == "Dubai");
+        CHECK(first1.getDestination().getName() == "Warsaw");
+
+
+        FirstClassTicket second1(City("Berlin"), City("Warsaw"), Date(30, 12, 2021), 2);
+        CHECK(second1.getDate().getDay() == 30);
+        CHECK(second1.getDate().getMonth() == 12);
+        CHECK(second1.getDate().getYear() == 2021);
+        CHECK(second1.getNumber() == 2);
+        CHECK(second1.getSource().getName() == "Berlin");
+        CHECK(second1.getDestination().getName() == "Warsaw");
+    }
     SECTION("passengers tests")
     {
-        //Passenger p1("anna", "nowak", "12345678901"); <- jeszcze nie ma implementacji w cpp
+        FirstClassTicket first1(City("Dubai"), City("Warsaw"), Date(12, 12, 2020), 1);
+        FirstClass firstp("kuba", "kowal", "12345678910", first1);
+        CHECK(firstp.getName() == "kuba");
+        CHECK(firstp.getSurname() == "kowal");
+        CHECK(firstp.getPesel() == "12345678910");
+        CHECK(firstp.getSourceCity().getName() == "Dubai");
+        CHECK(firstp.getTicket().getDate().getDay() == 12);
+    }
+
+    SECTION("workers tests")
+    {
+
+    }
+
+    SECTION("ticket tests")
+    {
+
     }
 }
 
