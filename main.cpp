@@ -57,10 +57,10 @@ int main() {
     // Medium_plane medium("beta");
     // Flight flight(light);
     // flight.set_plane(medium);
-    string a = "aaaa";
-    string b = "aaaaa";
-    if (a == b) {
-        cout << "sasasa";
-    }
+
+    Light_plane lp("AAAA");
+    Flight flight(lp);
+
+    flight.get_plane().print();
     return 0;
 }
