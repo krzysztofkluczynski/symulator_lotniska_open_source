@@ -19,7 +19,29 @@ Planes& Flight::get_plane() {
     return plane;
 }
 
+vector<Stewardess> Flight::get_stewardess() {
+    return stewardess;
+}
 
+vector<Pilot> Flight::get_pilot() {
+    return pilot;
+}
+
+vector<LuggageMan> Flight::get_luggage_man() {
+    return luggage_man;
+}
+
+vector<Other> Flight::get_other() {
+    return other;
+}
+
+vector<FirstClass> Flight::get_first_class() {
+    return first_class;
+}
+
+vector<SecondClass> Flight::get_second_class() {
+    return second_class;
+}
 
 // sekcja dodawania pracownikow
 void Flight::add_stewardess(Stewardess new_stewardess) {

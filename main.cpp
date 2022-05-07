@@ -62,5 +62,6 @@ int main() {
     Flight flight(lp);
 
     flight.get_plane().print();
+    flight.get_stewardess();
     return 0;
 }

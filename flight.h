@@ -33,7 +33,14 @@ class Flight {
         void set_plane(Planes& plane);
 
         Planes& get_plane();
+        std::vector<Pilot> get_pilot();
+        std::vector<Stewardess> get_stewardess();
+        std::vector<LuggageMan> get_luggage_man();
+        std::vector<Other> get_other();
 
+        std::vector<FirstClass> get_first_class();
+        std::vector<SecondClass> get_second_class();
+        
         void add_stewardess(Stewardess); // tu pytanie czy to maja byc 4 metody czy jedna
         void add_pilot(Pilot); //latwiej zaimplementowac 4 
         void add_luggage_man(LuggageMan); // ale jako jedna tez pewnie sie da,
