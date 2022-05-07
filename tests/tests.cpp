@@ -139,7 +139,7 @@ TEST_CASE("Simple classes tests", "[tests]")
         CHECK(first1.getDestination().getName() == "Warsaw");
 
 
-        FirstClassTicket second1(City("Berlin"), City("Warsaw"), Date(30, 12, 2021), 2);
+        SecondClassTicket second1(City("Berlin"), City("Warsaw"), Date(30, 12, 2021), 2);
         CHECK(second1.getDate().getDay() == 30);
         CHECK(second1.getDate().getMonth() == 12);
         CHECK(second1.getDate().getYear() == 2021);
@@ -159,11 +159,6 @@ TEST_CASE("Simple classes tests", "[tests]")
     }
 
     SECTION("workers tests")
-    {
-
-    }
-
-    SECTION("ticket tests")
     {
 
     }

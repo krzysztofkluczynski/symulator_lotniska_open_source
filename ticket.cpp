@@ -57,7 +57,7 @@ Price Ticket::getBasePrice() const
     return base_price;
 }
 
-FirstClassTicket::FirstClassTicket(City source, City Destination, Date date, unsigned int num)
+FirstClassTicket::FirstClassTicket(City source, City destination, Date date, unsigned int num)
 : Ticket(source, destination, date, num) {}
 
 Price FirstClassTicket::getRealPrice() const
@@ -66,7 +66,7 @@ Price FirstClassTicket::getRealPrice() const
     return base_price * 1.5f;  //to tez trzeba bedzie zaokraglic zeby wychodzily w miare okej liczby
 }
 
-SecondClassTicket::SecondClassTicket(City source, City Destination, Date date, unsigned int num)
+SecondClassTicket::SecondClassTicket(City source, City destination, Date date, unsigned int num)
 : Ticket(source, destination, date, num) {}
 
 
