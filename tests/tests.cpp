@@ -5,7 +5,7 @@
 #include "../passenger_classes.h"
 #include "../worker_classes.h"
 #include "../planes.h" //dodalem te dwa pliki do testow
-// #include "../flight.h" //dopisz sobie w launch.json
+#include "../flight.h" //dopisz sobie w launch.json
 
 #include "../exceptions.h" // <---- TO TEZ SE DOPISZ
 #include "../ticket.h"
@@ -193,4 +193,47 @@ TEST_CASE("planes") {
         CHECK(lp.get_sitting_places() == 200);
         CHECK(lp.get_price_multiplier()==1.01f);
     }
+}
+
+TEST_CASE("flight class") {
+    Light_plane lp("AAAA");
+    Flight flight(lp);
+
+    SECTION("Setters/num of workers") {
+        Stewardess stew("Anna", "Kowalska", "12345678902");
+        Pilot pilot("Piotr", "Nowak", "09876542146");
+        LuggageMan luggage("Ola", "Kowalczyk", "22222222222");
+        Other other("Tom", "Json", "33333333333");
+        
+        CHECK(flight.stewardess_num() == 0);
+        CHECK(flight.pilot_num() == 0);
+        CHECK(flight.luggage_num() == 0);
+        CHECK(flight.other_num() == 0);
+        CHECK(flight.workers_number() == 0);
+
+        flight.add_stewardess(stew);
+        flight.add_pilot(pilot);
+        flight.add_luggage_man(luggage);
+        flight.add_other(other);
+
+        CHECK(flight.stewardess_num() == 1);
+        CHECK(flight.pilot_num() == 1);
+        CHECK(flight.luggage_num() == 1);
+        CHECK(flight.other_num() == 1);
+        CHECK(flight.workers_number() == 4);
+    }
+
+    SECTION("plane") {
+        CHECK(flight.get_plane().get_plane_name() == "AAAA");
+        Medium_plane medium("beta");
+        flight.set_plane(medium);
+        CHECK(flight.get_plane().get_plane_name() == "beta");
+    }
+
+    SECTION("Passengers test") {
+        //tddddddd
+        int i = 0;
+    }
+
+
 }

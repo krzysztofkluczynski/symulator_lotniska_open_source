@@ -30,6 +30,8 @@ Person::Person(string p_name, string p_surname, string p_pesel)
     
 }
 
+Person::~Person() {}
+
 void Person::setName(string p_name)
 {
     name = p_name;
