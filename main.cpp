@@ -62,5 +62,6 @@ int main() {
     Flight flight(lp);
 
     flight.get_plane().print();
+    cout << endl << flight.get_plane() << endl;
     return 0;
 }

@@ -4,13 +4,13 @@
 #include "../person.h"
 #include "../passenger_classes.h"
 #include "../worker_classes.h"
-#include "../planes.h" //dodalem te dwa pliki do testow
-#include "../flight.h" //dopisz sobie w launch.json
+#include "../planes.h"
+#include "../flight.h"
 
-#include "../exceptions.h" // <---- TO TEZ SE DOPISZ
+#include "../exceptions.h"
 #include "../ticket.h"
 #include "../city.h"
-//dopisz sobie ticket.cpp w json
+
 
 
 #include <sstream>
@@ -156,15 +156,45 @@ TEST_CASE("Simple classes tests", "[tests]")
         CHECK(firstp.getPesel() == "12345678910");
         CHECK(firstp.getSourceCity().getName() == "Dubai");
         CHECK(firstp.getTicket().getDate().getDay() == 12);
+
+
+        SecondClassTicket ticket2(City("Berlin"), City("Warsaw"), Date(12, 12, 2021), 2);
+        SecondClass secondp("kuba", "kowalski", "12345678901", ticket2);
+        CHECK(secondp.getName() == "kuba");
+        CHECK(secondp.getSurname() == "kowalski");
+        CHECK(secondp.getPesel() == "12345678901");
+        CHECK(secondp.getSourceCity().getName() == "Berlin");
+        CHECK(secondp.getTicket().getDate().getDay() == 12);
+        CHECK(secondp.getTicket().getNumber() == 2);
+
     }
 
     SECTION("workers tests")
     {
+        Stewardess s1("anna", "nowak", "12345678901");
+        Stewardess s2("kuba", "kowal", "12345678901", Price(420, 0));
 
-    }
+        CHECK(s1.getName() == "anna");
+        CHECK(s1.getSurname() == "nowak");
+        CHECK(s1.getPesel() == "12345678901");
+        CHECK(s1.getSpeciality() == "stewardess");
+        CHECK(s1.getPrice().getZl() == 4000);
+        CHECK(s2.passengersPerWorker() == 20);
+
+        CHECK(s2.getName() == "kuba");
+        CHECK(s2.getSurname() == "kowal");
+        CHECK(s2.getPesel() == "12345678901");
+        CHECK(s2.getSpeciality() == "stewardess");
+        CHECK(s2.getPrice().getZl() == 420);
+        CHECK(s1.passengersPerWorker() == 20);
+
+        s2.setPrice(Price(2, 90));
+        CHECK(s2.getPrice().getZl() == 2);
+        CHECK(s2.getPrice().getGr() == 90);
+    } 
 }
 
-TEST_CASE("planes") {
+TEST_CASE("planes", "[planes]") {
 
     SECTION("light plane getters") {
         Light_plane lp("AAAA");

@@ -5,13 +5,13 @@ using namespace std;
 Planes::Planes(string plane_name, int sitting_places) :
 plane_name(plane_name), sitting_places(sitting_places) {} //dodac sprawdzenie
 
-string Planes::get_plane_name() {
+string Planes::get_plane_name() const{
     return plane_name;
 }
 
 Planes::~Planes() {}
 
-unsigned int Planes::get_sitting_places() {
+unsigned int Planes::get_sitting_places() const{
     return sitting_places;
 }
 
@@ -26,6 +26,13 @@ void Planes::set_sitting_places(unsigned int new_numb) {
 void Planes::print() const {
     cout << plane_name << "\nSitting places: " << sitting_places;
 }
+
+std::ostream &operator<<(std::ostream& out, const Planes& plane)
+{
+    out << plane.get_plane_name() << "\nSitting places: " << plane.get_sitting_places();
+    return out;
+}
+
 
 Light_plane::Light_plane(string plane_name, int sitting_places, float price_multiplier) :
 Planes(plane_name, sitting_places), price_multiplier(price_multiplier) {}

@@ -72,6 +72,6 @@ SecondClassTicket::SecondClassTicket(City source, City destination, Date date, u
 
 Price SecondClassTicket::getRealPrice() const
 {
-    return base_price * 0.8f;       //to tak samo do zaaokraglenia
+    return base_price;       //to tak samo do zaaokraglenia
 }
 
