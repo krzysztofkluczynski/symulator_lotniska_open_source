@@ -5,17 +5,19 @@
 #include "price.h"
 #include "date.h"
 
-class Ticket   // <-- jakies male samoloty moga nie miec podzialu na pierwsza i druga klase dla pasazerow
+class Ticket   // <-- klasa czysto abstrakcyjna
 {
 protected:
     unsigned int number;
     City source;
-    City destination; 
+    City destination;
     Date date;
     Price base_price;  // <-- to by bylo wyliczane na podstawie kilometrow miedzy miastammi, a ta metoda nizej moglaby to wlasnie liczyc
     void calculateBasePrice(); 
 public:
-    Ticket(City source, City Destination, Date date);  // <-- ceny nie przyjmujemy w konstruktorze bo ja policzymy
+    Ticket(City source, City Destination, Date date, unsigned int number);  // <-- ceny nie przyjmujemy w konstruktorze bo ja policzymy
+
+    virtual ~Ticket();
     
     unsigned int getNumber() const;
     void setNumber(unsigned int);
@@ -26,10 +28,12 @@ public:
     City getDestination() const;
     void setDestination(const City& city);
 
-    City getDate() const;
-    void setDate(const City& city);
+    Date getDate() const;
+    void setDate(const Date& city);
 
-    virtual Price getRealPrice() const; 
+    Price getBasePrice() const;
+
+    virtual Price getRealPrice() const = 0; 
 };
 
 
@@ -37,7 +41,7 @@ public:
 class FirstClassTicket: public Ticket
 {
 public:
-    FirstClassTicket(City source, City Destination, Date date);
+    FirstClassTicket(City source, City Destination, Date date, unsigned int num);
 
     Price getRealPrice() const override; 
 };
@@ -48,7 +52,7 @@ public:
 class SecondClassTicket: public Ticket
 {
 public:
-    SecondClassTicket(City source, City Destination, Date date);
+    SecondClassTicket(City source, City Destination, Date date, unsigned int num);
 
     Price getRealPrice() const override; 
 };

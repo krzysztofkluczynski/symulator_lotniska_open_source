@@ -2,6 +2,14 @@
 #include <math.h>
 #include <map>
 
+#include "date.h"
+#include "price.h"
+#include "person.h"
+#include "passenger_classes.h"
+#include "worker_classes.h"
+#include "planes.h" //dodalem te dwa pliki do testow
+#include "flight.h" //dopisz sobie w launch.json
+
 
 using namespace std;
 
@@ -10,6 +18,8 @@ double geo_distance(string city1, string city2) {
     // Warszawa ma wspolrzedne 52°15′N 21°00′E
     // podajemy 52, 15, 21, 0
     // jesli zamiast N jest S to podajemy -52 i analogicznie dla E i W
+
+    // tu tez trzeba bedzie zrobic liste dostepnych miast i wyjatek jakby ktos podal zle
     
     typedef array<double, 4> Fourth;
     map<string, Fourth> city_map;
