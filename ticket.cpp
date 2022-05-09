@@ -3,7 +3,7 @@
 using namespace std;
 
 Ticket::Ticket(City p_source, City p_destination, Date p_date, unsigned int p_num)
-: source(p_source), destination(p_destination), date(p_date), number(p_num)
+: source(p_source), destination(p_destination), date(p_date), flight_id(p_num)
 {
     base_price = Price(50,0);    //TO ROBOCZA WERSJA DO ZMIANY Z TA CENA
                         //tutaj trzeba doliczyc ta odleglosc i podac cos do pola ceny
@@ -15,12 +15,12 @@ Ticket::~Ticket() {}
 
 unsigned int Ticket::getNumber() const
 {
-    return number;
+    return flight_id;
 }
 
 void Ticket::setNumber(unsigned int p_num)
 {
-    number = p_num;
+    flight_id = p_num;
 }
 
 City Ticket::getSource() const
