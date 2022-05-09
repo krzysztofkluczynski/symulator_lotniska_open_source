@@ -14,6 +14,10 @@
 
 class Flight {
     private:
+        unsigned int id;
+        Date date;
+        City departure;
+        City arrival;
         Planes& plane;
         std::vector<Stewardess> stewardess;
         std::vector<Pilot> pilot;
@@ -22,7 +26,12 @@ class Flight {
         std::vector<FirstClass> first_class;
         std::vector<SecondClass> second_class;
     public:
-        Flight(Planes& plane,
+        Flight(
+        unsigned int id,
+        Date date,     //<--get i set to tego
+        City departure, //
+        City arrival,  
+        Planes& plane,
         std::vector<Stewardess> stewardess = {},
         std::vector<Pilot> pilot = {},
         std::vector<LuggageMan> luggage_man = {},
@@ -31,6 +40,9 @@ class Flight {
         std::vector<SecondClass> second_class = {});
 
         void set_plane(Planes& plane);
+
+        //hbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
 
         Planes& get_plane();
         std::vector<Pilot> get_pilot();

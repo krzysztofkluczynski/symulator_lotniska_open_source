@@ -62,7 +62,7 @@ void Flight::add_other(Other new_other) {
 
 
 // sekcja dodawania pasazerow
-bool Flight::add_first_class(FirstClass new_first_class) {
+bool Flight::add_first_class(FirstClass new_first_class) {          //tu jeszcze wyjatek gdy mamy maks osob?
     if(check_passenger(new_first_class.getPesel())) {
         return false;
     }

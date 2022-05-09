@@ -8,7 +8,7 @@
 class Ticket   // <-- klasa czysto abstrakcyjna
 {
 protected:
-    unsigned int number;
+    unsigned int flight_id;
     City source;
     City destination;
     Date date;

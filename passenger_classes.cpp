@@ -82,7 +82,7 @@ std::ostream &operator<<(std::ostream& out, const FirstClass& passenger)
     return out;
 }
 
-SecondClass::SecondClass(std::string name, std::string surname, std::string pasel, const SecondClassTicket& p_ticket)
+SecondClass::SecondClass(std::string name, std::string surname, std::string pesel, const SecondClassTicket& p_ticket)
 : Person(name, surname, pesel), ticket(p_ticket) {}
 
 City SecondClass::getSourceCity() const

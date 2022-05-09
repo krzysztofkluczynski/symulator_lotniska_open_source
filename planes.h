@@ -14,11 +14,13 @@ class Planes {
         virtual ~Planes();
         virtual double calculate_price(int taken_seats)=0;
 
-        std::string get_plane_name();
-        unsigned int get_sitting_places();
+        std::string get_plane_name() const;
+        unsigned int get_sitting_places() const;
         
         void set_plane_name(std::string);
         void set_sitting_places(unsigned int);
+
+        friend std::ostream &operator<<(std::ostream& out, const Planes& plane);
 };
 
 class Light_plane : public Planes {
