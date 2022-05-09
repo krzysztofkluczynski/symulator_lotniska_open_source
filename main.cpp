@@ -15,21 +15,18 @@ double geo_distance(string city1, string city2) {
     map<string, Fourth> city_map;
     city_map["Wroclaw"] = {51, 6, 17, 2};
     city_map["Warszawa"] = {52, 15, 21, 0};
+    city_map["Gdansk"] = {54, 21, 18, 40};
     Fourth city_1 = city_map[city1];
     Fourth city_2 = city_map[city2];
     double x1_degree = city_1[0];
-    double x1_min = city_1[1];
+    double x1_min = city_1[1]*5/3;
     double y1_degree = city_1[2];
-    double y1_min = city_1[3];
+    double y1_min = city_1[3]*5/3;
     double x2_degree = city_2[0];
-    double x2_min = city_2[1];
+    double x2_min = city_2[1]*5/3;
     double y2_degree = city_2[2];
-    double y2_min = city_2[3];
+    double y2_min = city_2[3]*5/3;
 
-    x1_min = x1_min*5/3;
-    x2_min = x2_min*5/3;
-    y1_min = y1_min*5/3;
-    y2_min = y2_min*5/3;
     double x1, y1, x2, y2;
     x1 = x1_degree+x1_min/100;
     x2 = x2_degree+x2_min/100;
@@ -42,6 +39,6 @@ double geo_distance(string city1, string city2) {
     }
 
 int main() {
-    cout << geo_distance("Wroclaw", "Warszawa");
+    cout << geo_distance("Wroclaw", "Gdansk");
     return 0;
 }
