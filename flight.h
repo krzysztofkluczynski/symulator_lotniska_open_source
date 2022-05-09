@@ -10,6 +10,7 @@
 #include "passenger_classes.h"
 #include "worker_classes.h"
 #include "person.h"
+#include "exceptions.h"
 
 
 class Flight {
@@ -28,8 +29,8 @@ class Flight {
     public:
         Flight(
         unsigned int id,
-        Date date,     //<--get i set to tego
-        City departure, //
+        Date date,
+        City departure,
         City arrival,  
         Planes& plane,
         std::vector<Stewardess> stewardess = {},
@@ -41,8 +42,15 @@ class Flight {
 
         void set_plane(Planes& plane);
 
-        //hbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+        unsigned int get_id();
+        Date get_date();
+        City get_departure();
+        City get_arrival();
 
+        void set_id(unsigned int);
+        void set_date(Date);
+        void set_arrival(City);
+        void set_departure(City);
 
         Planes& get_plane();
         std::vector<Pilot> get_pilot();
@@ -58,8 +66,8 @@ class Flight {
         void add_luggage_man(LuggageMan); // ale jako jedna tez pewnie sie da,
         void add_other(Other); // pytanie jak potrzebujemy potem do database
 
-        bool add_first_class(FirstClass); // analogiczne pytanie jak wyzej
-        bool add_second_class(SecondClass);
+        void add_first_class(FirstClass); // analogiczne pytanie jak wyzej
+        void add_second_class(SecondClass);
 
         int first_class_num();
         int second_class_num();
@@ -73,6 +81,8 @@ class Flight {
 
         void remove_passenger(std::string pesel); // usuwanie pasazera
         bool check_passenger(std::string pesel); // sprawdzenie czy pasazer juz ma bilet
+
+        bool empty_seat();
 
 };
 

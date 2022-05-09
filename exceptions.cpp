@@ -11,3 +11,9 @@ std::invalid_argument("Invalid pesel input: " + p_pesel) {}
 
 NegativePriceException::NegativePriceException():
 std::invalid_argument("Negative value of the base price"){}
+
+InvalidPassenger::InvalidPassenger():
+std::invalid_argument("This passenger is already on this flight"){}
+
+NoSpaceException::NoSpaceException():
+std::invalid_argument("This flight is full."){}

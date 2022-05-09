@@ -2,19 +2,57 @@
 
 using namespace std;
 
-Flight::Flight(Planes& plane,
+Flight::Flight(
+        unsigned int id,
+        Date date,
+        City departure,
+        City arrival,  
+        Planes& plane,
         vector<Stewardess> stewardess,
         vector<Pilot> pilot,
         vector<LuggageMan> luggage_man,
         vector<Other> other,
         vector<FirstClass> first_class,
         vector<SecondClass> second_class) :
-        plane(plane), stewardess(stewardess), 
-        pilot(pilot), luggage_man(luggage_man), 
-        other(other), first_class(first_class),
-        second_class(second_class) {}
+        id(id), date(date), departure(departure),
+        arrival(arrival),plane(plane), 
+        stewardess(stewardess), pilot(pilot), 
+        luggage_man(luggage_man), other(other), 
+        first_class(first_class), second_class(second_class) {}
 
-// geeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeettttttttttteeeeeeeeeeerrrrrrsssssss
+
+unsigned int Flight::get_id() {
+    return id;
+}
+
+Date Flight::get_date() {
+    return date;
+}
+
+City Flight::get_arrival() {
+    return arrival;
+}
+
+City Flight::get_departure() {
+    return departure;
+}
+
+void Flight::set_id(unsigned int new_id) {
+    id = new_id;
+}
+
+void Flight::set_date(Date new_date) {
+    date = new_date;
+}
+
+void Flight::set_arrival(City new_arrival) {
+    arrival = new_arrival;
+}
+
+void Flight::set_departure(City new_departure) {
+    departure = new_departure;
+}
+
 Planes& Flight::get_plane() {
     return plane;
 }
@@ -62,23 +100,26 @@ void Flight::add_other(Other new_other) {
 
 
 // sekcja dodawania pasazerow
-bool Flight::add_first_class(FirstClass new_first_class) {          //tu jeszcze wyjatek gdy mamy maks osob?
+void Flight::add_first_class(FirstClass new_first_class) {          //tu jeszcze wyjatek gdy mamy maks osob?
+    if (!empty_seat()) {
+        throw NoSpaceException();
+    }
     if(check_passenger(new_first_class.getPesel())) {
-        return false;
+        throw InvalidPassenger();
     }
     first_class.push_back(new_first_class);
-    return true;
 }
 
-bool Flight::add_second_class(SecondClass new_second_class) {
+void Flight::add_second_class(SecondClass new_second_class) {
+    if (!empty_seat()) {
+        throw NoSpaceException();
+    }
     if(check_passenger(new_second_class.getPesel())) {
-        return false;
+        throw InvalidPassenger();
     }
     second_class.push_back(new_second_class);
-    return true;
 }
 
-// setter samolotu to nie ma prawa dzialać ale testujemy
 void Flight::set_plane(Planes& new_plane) {
     plane = new_plane;
 }
@@ -143,4 +184,11 @@ void Flight::remove_passenger(string pesel) {
             return;
         }
     }
+}
+
+bool Flight::empty_seat() {
+    if (passengers_number() >= plane.get_sitting_places()) {
+        return false;
+    }
+    return true;
 }

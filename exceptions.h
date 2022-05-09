@@ -29,5 +29,15 @@ class NegativePriceException : public std::invalid_argument
         NegativePriceException();
 };
 
+class InvalidPassenger : public std::invalid_argument
+{
+    public: 
+        InvalidPassenger();
+};
 
+class NoSpaceException : public std::invalid_argument
+{
+    public: 
+        NoSpaceException();
+};
 #endif

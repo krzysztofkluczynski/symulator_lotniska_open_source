@@ -1,0 +1,1 @@
+id type(0-3)(light, small, medium, big)
