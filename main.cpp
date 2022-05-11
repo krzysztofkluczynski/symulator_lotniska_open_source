@@ -9,6 +9,7 @@
 #include "worker_classes.h"
 #include "planes.h" //dodalem te dwa pliki do testow
 #include "flight.h" //dopisz sobie w launch.json
+#include "data_base.h"
 
 
 using namespace std;
@@ -49,6 +50,6 @@ double geo_distance(string city1, string city2) {
     }
 
 int main() {
-    cout << geo_distance("Wroclaw", "Gdansk");
+    Data_base db("people.txt", "workers.txt", "flights.txt");
     return 0;
 }

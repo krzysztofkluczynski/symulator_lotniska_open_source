@@ -64,8 +64,8 @@ void Data_base::import_workers() {
             stewardess.push_back(stew);
         }
         else if (type=="2") {
-            Pilot pilot(name, surname, pesel, flight_num);
-            pilot.push_back(pilot);
+            Pilot pil(name, surname, pesel, flight_num);
+            pilot.push_back(pil);
         }
         else if (type=="3") {
             LuggageMan luggage(name, surname, pesel, flight_num);
