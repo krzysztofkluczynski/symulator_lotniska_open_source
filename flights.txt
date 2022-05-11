@@ -1,1 +1,1 @@
-id day month year departure arrival p_name p_type(0-3)
+1 1 1 2022 Wroclaw Warszawa AAA 1

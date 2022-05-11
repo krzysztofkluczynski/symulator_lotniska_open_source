@@ -1,1 +1,1 @@
-imie nazwisko pesel skad dokad day month year klasa(1 lub 2) nr_lotu
+BBB ZZZ 64021035427 Wroclaw Warszawa 1 1 2022 1 1

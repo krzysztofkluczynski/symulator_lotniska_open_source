@@ -1,1 +1,1 @@
-imie nazwisko pesel lot typ(1/2/3/4)
+AAA KKK 60012772371 1 1
