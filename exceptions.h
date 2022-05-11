@@ -23,6 +23,24 @@ class InvalidInput : public std::invalid_argument
         InvalidInput();
 };
 
+class InvalidClass : public std::invalid_argument
+{
+    public: 
+        InvalidClass();
+};
+
+class InvalidPlaneType : public std::invalid_argument
+{
+    public: 
+        InvalidPlaneType();
+};
+
+class InvalidWorker : public std::invalid_argument
+{
+    public: 
+        InvalidWorker();
+};
+
 class NegativePriceException : public std::invalid_argument
 {
     public: 

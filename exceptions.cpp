@@ -3,6 +3,15 @@
 InvalidInput::InvalidInput():
 std::invalid_argument("invalid input"){}
 
+InvalidClass::InvalidClass():
+std::invalid_argument("invalid class"){}
+
+InvalidWorker::InvalidWorker():
+std::invalid_argument("invalid worker"){}
+
+InvalidPlaneType::InvalidPlaneType():
+std::invalid_argument("invalid plane type"){}
+
 PassagerNotFound::PassagerNotFound():
 std::invalid_argument("Passager not found"){}
 

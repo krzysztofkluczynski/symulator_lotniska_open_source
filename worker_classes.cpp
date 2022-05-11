@@ -2,8 +2,8 @@
 
 using namespace std;
 
-Worker::Worker(std::string name, std::string surname, std::string pesel, const Price& salary) //domyslna wyplata
-: Person(name, surname, pesel), salary(salary) {}
+Worker::Worker(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price& salary) //domyslna wyplata
+: Person(name, surname, pesel), flight_num(flight_num), salary(salary) {}
 
 
 Worker::~Worker() {}
@@ -18,6 +18,10 @@ void Worker::setPrice(const Price& price)
     salary = price;
 }
 
+unsigned int Worker::get_flight_num() {
+    return flight_num;
+}
+
 
 std::ostream &operator<<(std::ostream& out, const Worker& worker)
 {
@@ -27,8 +31,8 @@ std::ostream &operator<<(std::ostream& out, const Worker& worker)
 }
 
 
-Stewardess::Stewardess(std::string name, std::string surname, std::string pesel, const Price& salary) //domyslna wyplata
-: Worker(name, surname, pesel, salary) {}
+Stewardess::Stewardess(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price& salary) //domyslna wyplata
+: Worker(name, surname, pesel, flight_num, salary) {}
 
 
 unsigned int Stewardess::passengersPerWorker() const
@@ -40,8 +44,8 @@ std::string Stewardess::getSpeciality() const
     return "stewardess";
 }
 
-Pilot::Pilot(std::string name, std::string surname, std::string pesel, const Price& salary)
-: Worker(name, surname, pesel, salary) {}
+Pilot::Pilot(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price& salary)
+: Worker(name, surname, pesel, flight_num, salary) {}
 
 
 unsigned int Pilot::passengersPerWorker() const
@@ -54,8 +58,8 @@ std::string Pilot::getSpeciality() const
 }
 
 
-LuggageMan::LuggageMan(std::string name, std::string surname, std::string pesel, const Price& salary) 
-: Worker(name, surname, pesel, salary) {}
+LuggageMan::LuggageMan(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price& salary) 
+: Worker(name, surname, pesel, flight_num, salary) {}
 
 
 unsigned int LuggageMan::passengersPerWorker() const
@@ -68,8 +72,8 @@ std::string LuggageMan::getSpeciality() const
 }
 
 
-Other::Other(std::string name, std::string surname, std::string pesel, const Price& salary) 
-: Worker(name, surname, pesel, salary) {}
+Other::Other(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price& salary) 
+: Worker(name, surname, pesel, flight_num, salary) {}
 
 
 unsigned int Other::passengersPerWorker() const

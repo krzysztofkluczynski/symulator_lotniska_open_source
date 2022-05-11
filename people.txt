@@ -1,1 +1,1 @@
-imie nazwisko pesel skad dokad data klasa(1 lub 2)
+imie nazwisko pesel skad dokad day month year klasa(1 lub 2) nr_lotu

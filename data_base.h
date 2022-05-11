@@ -3,6 +3,8 @@
 
 #include <fstream>
 #include <string>
+#include <memory>
+#include <list>
 
 #include "flight.h"
 
@@ -19,18 +21,22 @@ class Data_base
         std::vector<Stewardess> stewardess;
         std::vector<Pilot> pilot;
 
+        std::vector<FirstClass> first;
+        std::vector<SecondClass> second;
+
         std::vector<Flight> flights;
+
         void import_passengers();
         void import_workers();
-        void import_planes();
         void import_flights();
 
     public: 
         Data_base(
         std::string people_path, 
-        std::string workers_path,
-        std::string planes_path, 
+        std::string workers_path, 
         std::string flights_path);
+
+        std::vector<Flight> get_flights();
 };
 
 
