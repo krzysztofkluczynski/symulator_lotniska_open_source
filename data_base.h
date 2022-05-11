@@ -5,7 +5,6 @@
 #include <string>
 #include <memory>
 #include <list>
-
 #include "flight.h"
 
 class Data_base 
@@ -29,6 +28,8 @@ class Data_base
         void import_passengers();
         void import_workers();
         void import_flights();
+
+        std::unique_ptr<Planes> create_plane(std::string p_type, std::string p_name);
 
     public: 
         Data_base(

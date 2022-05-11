@@ -53,7 +53,8 @@ void Data_base::import_workers() {
     fstream file;
     file.open(workers_path, ios::in);
     if (!file.good()) throw "invalid file";
-    string name, surname, pesel, flight_num, type;
+    string name, surname, pesel, type;
+    unsigned int flight_num;
     while (file >> name) {
         file >> surname;
         file >> pesel;
@@ -82,6 +83,28 @@ void Data_base::import_workers() {
     file.close();
 }
 
+unique_ptr<Planes> Data_base::create_plane(std::string p_type, std::string p_name){
+        if (p_type=="0") {
+            std::unique_ptr<Light_plane> plane = std::make_unique<Light_plane>(p_name);
+            return plane;
+        }
+        else if (p_type=="1") {
+            std::unique_ptr<Small_plane> plane = std::make_unique<Small_plane>(p_name);
+            return plane;
+        }
+        else if (p_type=="2") {
+            std::unique_ptr<Medium_plane> plane = std::make_unique<Medium_plane>(p_name);
+            return plane;
+        }
+        else if (p_type=="3") {
+            std::unique_ptr<Big_plane> plane = std::make_unique<Big_plane>(p_name);
+                return plane;
+        }
+        else {
+            throw InvalidPlaneType();
+        }
+}
+
 void Data_base::import_flights() {
     fstream file;
     file.open(flights_path, ios::in);
@@ -95,59 +118,60 @@ void Data_base::import_flights() {
         file >> arrival;
         file >> p_name;
         file >> p_type;
-        if (p_type=="0") {
-            Light_plane plane(p_name);
-        }
-        else if (p_type=="1") {
-            Small_plane plane(p_name);
-        }
-        else if (p_type=="2") {
-            Medium_plane plane(p_name);
-        }
-        else if (p_type=="3") {
-            Big_plane plane(p_name);
-        }
-        else {
-            throw InvalidPlaneType();
-        }
-        City dep(departure);
-        City ari(arrival);
-        Date date(stoi(day), stoi(month), stoi(year));
-        Flight flight(stoul(id), date, dep, ari, plane);
+        // if (p_type=="0") {
+        //     Light_plane plane(p_name);
+        // }
+        // else if (p_type=="1") {
+        //     Small_plane plane(p_name);
+        // }
+        // else if (p_type=="2") {
+        //     Medium_plane plane(p_name);
+        // }
+        // else if (p_type=="3") {
+        //     Big_plane plane(p_name);
+        // }
+        // else {
+        //     throw InvalidPlaneType();
+        // }
+        //Planes& plane = create_plane(p_type, p_name); 
+        // City dep(departure);
+        // City ari(arrival);
+        // Date date(stoi(day), stoi(month), stoi(year));
+        Flight flight(stoul(id), Date(stoi(day), stoi(month), stoi(year)), City(departure), City(arrival), *(create_plane(p_type, p_name)));
 
         for (auto stew : stewardess) {
-            if flight.get_id() == stew.get_flight_num() {
-                flight.add_stewardess(Stewardess stew);
+            if (flight.get_id() == stew.get_flight_num()) {
+                flight.add_stewardess(stew);
             }
         }
 
         for (auto pil : pilot) {
-            if flight.get_id() == pil.get_flight_num() {
-                flight.add_pilot(Pilot pil);
+            if (flight.get_id() == pil.get_flight_num()) {
+                flight.add_pilot(pil);
             }
         }
 
         for (auto lugg : luggage_man) {
-            if flight.get_id() == lugg.get_flight_num() {
-                flight.add_luggage_man(LuggageMan lugg);
+            if (flight.get_id() == lugg.get_flight_num()) {
+                flight.add_luggage_man(lugg);
             }
         }
 
         for (auto oth : other) {
-            if flight.get_id() == oth.get_flight_num() {
-                flight.add_other(Other oth);
+            if (flight.get_id() == oth.get_flight_num()) {
+                flight.add_other(oth);
             }
         }
 
         for (auto firs : first) {
-            if flight.get_id() == firs.get_ticket().getNumber() {
-                flight.add_first_class(FirstClass firs);
+            if (flight.get_id() == firs.getTicket().getNumber()) {
+                flight.add_first_class(firs);
             }
         }
 
         for (auto sec : second) {
-            if flight.get_id() == sec.get_ticket().getNumber() {
-                flight.add_second_class(SecondClass sec);
+            if (flight.get_id() == sec.getTicket().getNumber()) {
+                flight.add_second_class(sec);
             }
         }
 

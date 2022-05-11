@@ -1,0 +1,1 @@
+imie nazwisko pesel skad dokad data klasa(1 lub 2)

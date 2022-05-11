@@ -51,5 +51,6 @@ double geo_distance(string city1, string city2) {
 
 int main() {
     Data_base db("people.txt", "workers.txt", "flights.txt");
+    cout << "raz";
     return 0;
 }
