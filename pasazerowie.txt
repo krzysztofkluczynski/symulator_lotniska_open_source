@@ -1,1 +1,1 @@
-imie nazwisko pesel skad dokad data klasa(1 lub 2)
+Anna Kowalska 12345678901 Warsaw Wroclaw 21 10 2020 1
