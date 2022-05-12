@@ -133,7 +133,7 @@ void Data_base::import_flights() {
         // else {
         //     throw InvalidPlaneType();
         // }
-        //Planes& plane = create_plane(p_type, p_name); 
+        //Planes& plane = *(create_plane(p_type, p_name)); 
         // City dep(departure);
         // City ari(arrival);
         // Date date(stoi(day), stoi(month), stoi(year));
