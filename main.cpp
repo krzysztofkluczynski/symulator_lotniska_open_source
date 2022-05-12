@@ -10,6 +10,7 @@
 #include "planes.h" //dodalem te dwa pliki do testow
 #include "flight.h" //dopisz sobie w launch.json
 #include "data_base.h"
+#include "interface.h"
 
 
 using namespace std;
@@ -51,6 +52,108 @@ double geo_distance(string city1, string city2) {
 
 int main() {
     Data_base db("people.txt", "workers.txt", "flights.txt");
-    cout << "raz";
+    cout << "breakpoint";
+
+
+
+
+    // Interface interface("path", "path", "path");
+    // bool run = true;
+    // int choice;
+    // while(run)
+    // {
+    //     try
+    //     {
+    //         choice = interface.menu();
+    //     }
+    //     catch(InvalidInput e)
+    //     {
+    //         //konczymy program w razie bledu
+    //         std::cerr << e.what() << '\n';
+    //         return 0;
+    //     }
+    //     switch(choice)
+    //     {
+    //         case 0:
+    //         {
+    //             try
+    //             {
+    //                 choice = interface.menu();
+    //             }
+    //             catch(InvalidInput e)
+    //             {
+    //                 //konczymy program w razie bledu
+    //                 std::cerr << e.what() << '\n';
+    //                 return 0;
+    //             }
+    //         }
+    //         case 1:
+    //         {
+    //             try 
+    //             {
+    //             interface.addFirstClass();
+    //             break;
+    //             }
+    //             catch(...)
+    //             {
+    //                 cerr << "invalid input" << endl;
+    //                 break;
+    //             }
+    //         }
+    //         case 2:
+    //         {
+    //             try 
+    //             {
+    //             interface.addSecondClass();
+    //             break;
+    //             }
+    //             catch(...)
+    //             {
+    //                 cerr << "invalid input" << endl;
+    //                 break;
+    //             }
+    //         }
+    //         case 3:
+    //         {
+    //             try 
+    //             {
+    //             interface.removePassager();
+    //             break;
+    //             } catch(InvalidInput e)
+    //             {
+    //                 cerr << "no passager with given pesel" << endl;
+    //                 break;
+    //             }
+    //         }
+    //         case 4:
+    //         {
+    //             interface.printDay();
+    //             break;
+    //         }
+    //         case 5:
+    //         {
+    //             try
+    //             {
+    //             interface.nextDay();
+    //             break;
+    //             }
+    //             catch(InvalidInput e)
+    //             {
+    //                 cerr << "no such pesel" << endl;
+    //                 break;
+    //             }
+    //         }
+    //         case 6:
+    //         {
+    //             cout << "You have decied to quit! " << endl;
+    //             return 0;
+    //         }
+    //         default:
+    //         {
+    //             return 0;
+    //         }
+    //     }
+        
+    // }
     return 0;
 }
