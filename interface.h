@@ -5,19 +5,23 @@
 class Interface
 {
     private:
-        Data_base db();
+        Data_base db;
+        Date stop_date;
+        Date current_date;
     public:
         Interface(
-        //Date date, <-- ta data tu bedzie ale do testow jej nie ma
-        std::string people_path, 
-        std::string workers_path, 
-        std::string flights_path);
+        Data_base db,
+        Date current_date = Date(1, 5, 2022),
+        Date stop_date = Date(7, 5, 2020));
+
+        Date getStopDate() const;
+        Date getCurrentDate() const;
+
         int menu();
         void addFirstClass();
         void addSecondClass();
-        void removePassager();
+        void printFlights();
         void findByPesel();
-        void printDay();
         void nextDay();
 
 };
