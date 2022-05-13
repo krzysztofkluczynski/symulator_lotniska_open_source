@@ -73,7 +73,7 @@ Price Price::operator+(const Price &p_price) const
 Price& Price::operator+=(const Price &price)
 {
     this->gr += price.gr;
-    return *this; 
+    return *this;
 }
 
 Price Price::operator*(float x) const

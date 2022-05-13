@@ -6,6 +6,8 @@
 #include <memory>
 #include <list>
 #include "flight.h"
+#include <random>
+
 
 class Data_base 
 {
@@ -20,16 +22,20 @@ class Data_base
         std::vector<Stewardess> stewardess;
         std::vector<Pilot> pilot;
 
-        std::vector<FirstClass> first;
+        std::vector<FirstClass> first;          //TE DWA WEKTORY CHHYBA BEDA DO USUNIECIA W TAKIM RAZIE I ZASTAPI JE WEKTOR PEOPLE
         std::vector<SecondClass> second;
+
+        std::vector<Person> people;
+
 
         std::vector<Flight> flights;
 
-        void import_passengers();
+        void import_passengers();   //<- TO TEZ PEWNIE BEDZIE NA ZASADZIE IMPORT PEOPLE
         void import_workers();
         void import_flights();
 
         std::unique_ptr<Planes> create_plane(std::string p_type, std::string p_name);
+        void assignPassengers();
 
     public: 
         Data_base(

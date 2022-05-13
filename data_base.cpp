@@ -32,6 +32,7 @@ void Data_base::import_passengers() {
         Date date(stoi(day), stoi(month), stoi(year));
         City arri_city(arrival);
         City dep_city(departure);
+        //tutaj moze trzeba bedzie przydzielic pasazera do lotu
         if (clas=="1") {
             FirstClassTicket ticket(dep_city, arri_city, date, stoul(flight_num));
             FirstClass passenger(name, surname, pesel, ticket);
@@ -179,4 +180,48 @@ void Data_base::import_flights() {
 
     }
     file.close();
+}
+
+void Data_base::assignPassengers()
+{
+    for (auto flight : flights)
+    {
+        random_device rd1;
+        mt19937 mt1(rd1());
+        uniform_real_distribution<> dist1(2, flight.get_plane().get_sitting_places()); //losowy numer od 2 do ilosci miejsc siedzacych
+        int random = dist1(mt1);
+        for(int i = 0; i < random; i++)
+        {
+            random_device rd2;      //losowanie klasy (1/2) dla pasazera
+            mt19937 mt2(rd2());
+            uniform_real_distribution<> dist2(1, 2); //losowy numer od 2 do ilosci miejsc siedzacych
+            int random2 = dist2(mt2);            
+
+            Person random_person = people[rand() % people.size()];
+
+            for( std::vector<Person>::iterator iter = people.begin(); iter != people.end(); ++iter ) //usuwanie czlowieka o danym peselu, moze mozna latwiej
+            {
+                if( (*iter).getPesel() == random_person.getPesel())
+                {
+                    people.erase(iter);
+                    break;
+                }
+}
+
+            if (random2 == 1)
+            {
+                FirstClassTicket ticket(flight.get_departure(), flight.get_arrival(), flight.get_date(), flight.get_id());
+                FirstClass passenger(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
+                flight.add_first_class(passenger);
+            }
+            else if (random2 == 1)
+            {
+                SecondClassTicket ticket(flight.get_departure(), flight.get_arrival(), flight.get_date(), flight.get_id());
+                SecondClass passenger(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
+                flight.add_second_class(passenger);
+            }
+              
+        }
+
+    }
 }
