@@ -6,6 +6,7 @@
 #include <memory>
 #include <list>
 #include "flight.h"
+#include "passenger_classes.h"
 #include <random>
 
 
@@ -26,6 +27,8 @@ class Data_base
         std::vector<SecondClass> second;
 
         std::vector<Person> people;
+
+        std::list<std::shared_ptr<Person>> passengers;  // <-- to lista wszystkich pasazerow bedzie, potrzebna potem do losowania
 
 
         std::vector<Flight> flights;

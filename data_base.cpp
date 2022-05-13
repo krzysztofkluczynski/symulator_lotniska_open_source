@@ -212,13 +212,21 @@ void Data_base::assignPassengers()
             {
                 FirstClassTicket ticket(flight.get_departure(), flight.get_arrival(), flight.get_date(), flight.get_id());
                 FirstClass passenger(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
+
                 flight.add_first_class(passenger);
+
+                std::shared_ptr<FirstClass> passager = std::make_shared<FirstClass>(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
+                passengers.push_back(std::move(passager));
             }
             else if (random2 == 1)
             {
                 SecondClassTicket ticket(flight.get_departure(), flight.get_arrival(), flight.get_date(), flight.get_id());
                 SecondClass passenger(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
+
                 flight.add_second_class(passenger);
+
+                std::shared_ptr<SecondClass> passager = std::make_shared<SecondClass>(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
+                passengers.push_back(std::move(passager));
             }
               
         }
