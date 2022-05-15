@@ -1,0 +1,2 @@
+imie nazwisko pesel lot typ(1/2/3/4)
+ 

@@ -8,6 +8,7 @@ class Worker: public Person
 {
     protected:
         Price salary;
+        unsigned int flight_num;
     public:
         Worker(std::string name, std::string surname, std::string pesel,
         unsigned int flight_num, const Price& salary = Price(3000, 0)); //domyslna wyplata 
