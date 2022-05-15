@@ -95,6 +95,7 @@ void Data_base::import_flights() {
         file >> arrival;
         file >> p_name;
         file >> p_type;
+        Light_plane plane(p_name);
         if (p_type=="0") {
             Light_plane plane(p_name);
         }
@@ -116,37 +117,37 @@ void Data_base::import_flights() {
         Flight flight(stoul(id), date, dep, ari, plane);
 
         for (auto stew : stewardess) {
-            if flight.get_id() == stew.get_flight_num() {
+            if (flight.get_id() == stew.get_flight_num()) {
                 flight.add_stewardess(Stewardess stew);
             }
         }
 
         for (auto pil : pilot) {
-            if flight.get_id() == pil.get_flight_num() {
+            if (flight.get_id() == pil.get_flight_num()) {
                 flight.add_pilot(Pilot pil);
             }
         }
 
         for (auto lugg : luggage_man) {
-            if flight.get_id() == lugg.get_flight_num() {
+            if (flight.get_id() == lugg.get_flight_num()) {
                 flight.add_luggage_man(LuggageMan lugg);
             }
         }
 
         for (auto oth : other) {
-            if flight.get_id() == oth.get_flight_num() {
+            if (flight.get_id() == oth.get_flight_num()) {
                 flight.add_other(Other oth);
             }
         }
 
         for (auto firs : first) {
-            if flight.get_id() == firs.get_ticket().getNumber() {
+            if (flight.get_id() == firs.get_ticket().getNumber()) {
                 flight.add_first_class(FirstClass firs);
             }
         }
 
         for (auto sec : second) {
-            if flight.get_id() == sec.get_ticket().getNumber() {
+            if (flight.get_id() == sec.get_ticket().getNumber()) {
                 flight.add_second_class(SecondClass sec);
             }
         }
