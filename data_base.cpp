@@ -18,35 +18,45 @@ void Data_base::import_passengers() {
     fstream file;
     file.open(people_path, ios::in);
     if (!file.good()) throw "invalid file";
-    string name, surname, pesel, departure, arrival, day, month, year, clas, flight_num;
+
+    string name, surname, pesel;
+
     while (file >> name) {
         file >> surname;
         file >> pesel;
-        file >> departure;
-        file >> arrival;
-        file >> day;
-        file >> month;
-        file >> year;
-        file >> clas;
-        file >> flight_num;
-        Date date(stoi(day), stoi(month), stoi(year));
-        City arri_city(arrival);
-        City dep_city(departure);
-        //tutaj moze trzeba bedzie przydzielic pasazera do lotu
-        if (clas=="1") {
-            FirstClassTicket ticket(dep_city, arri_city, date, stoul(flight_num));
-            FirstClass passenger(name, surname, pesel, ticket);
-            first.push_back(passenger);
-        }
-        else if (clas=="2") {
-            SecondClassTicket ticket(dep_city, arri_city, date, stoul(flight_num));
-            SecondClass passenger(name, surname, pesel, ticket);
-            second.push_back(passenger);
-        }
-        else {
-            throw InvalidClass();
-        }
+        Person peop(name, surname, pesel);
+        people.push_back(peop);
     }
+
+    // string name, surname, pesel, departure, arrival, day, month, year, clas, flight_num;
+    // while (file >> name) {
+    //     file >> surname;
+    //     file >> pesel;
+    //     file >> departure;
+    //     file >> arrival;
+    //     file >> day;
+    //     file >> month;
+    //     file >> year;
+    //     file >> clas;
+    //     file >> flight_num;
+    //     Date date(stoi(day), stoi(month), stoi(year));
+    //     City arri_city(arrival);
+    //     City dep_city(departure);
+    //     //tutaj moze trzeba bedzie przydzielic pasazera do lotu
+    //     if (clas=="1") {
+    //         FirstClassTicket ticket(dep_city, arri_city, date, stoul(flight_num));
+    //         FirstClass passenger(name, surname, pesel, ticket);
+    //         first.push_back(passenger);
+    //     }
+    //     else if (clas=="2") {
+    //         SecondClassTicket ticket(dep_city, arri_city, date, stoul(flight_num));
+    //         SecondClass passenger(name, surname, pesel, ticket);
+    //         second.push_back(passenger);
+    //     }
+    //     else {
+    //         throw InvalidClass();
+    //     }
+    // }
     file.close();
 }
 
