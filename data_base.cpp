@@ -28,36 +28,6 @@ void Data_base::import_passengers() {
         Person peop(name, surname, pesel);
         people.push_back(peop);
     }
-
-    // string name, surname, pesel, departure, arrival, day, month, year, clas, flight_num;
-    // while (file >> name) {
-    //     file >> surname;
-    //     file >> pesel;
-    //     file >> departure;
-    //     file >> arrival;
-    //     file >> day;
-    //     file >> month;
-    //     file >> year;
-    //     file >> clas;
-    //     file >> flight_num;
-    //     Date date(stoi(day), stoi(month), stoi(year));
-    //     City arri_city(arrival);
-    //     City dep_city(departure);
-    //     //tutaj moze trzeba bedzie przydzielic pasazera do lotu
-    //     if (clas=="1") {
-    //         FirstClassTicket ticket(dep_city, arri_city, date, stoul(flight_num));
-    //         FirstClass passenger(name, surname, pesel, ticket);
-    //         first.push_back(passenger);
-    //     }
-    //     else if (clas=="2") {
-    //         SecondClassTicket ticket(dep_city, arri_city, date, stoul(flight_num));
-    //         SecondClass passenger(name, surname, pesel, ticket);
-    //         second.push_back(passenger);
-    //     }
-    //     else {
-    //         throw InvalidClass();
-    //     }
-    // }
     file.close();
 }
 
@@ -130,25 +100,6 @@ void Data_base::import_flights() {
         file >> arrival;
         file >> p_name;
         file >> p_type;
-        // if (p_type=="0") {
-        //     Light_plane plane(p_name);
-        // }
-        // else if (p_type=="1") {
-        //     Small_plane plane(p_name);
-        // }
-        // else if (p_type=="2") {
-        //     Medium_plane plane(p_name);
-        // }
-        // else if (p_type=="3") {
-        //     Big_plane plane(p_name);
-        // }
-        // else {
-        //     throw InvalidPlaneType();
-        // }
-        //Planes& plane = *(create_plane(p_type, p_name)); 
-        // City dep(departure);
-        // City ari(arrival);
-        // Date date(stoi(day), stoi(month), stoi(year));
         Flight flight(stoul(id), Date(stoi(day), stoi(month), stoi(year)), City(departure), City(arrival), *(create_plane(p_type, p_name)));
 
         for (auto stew : stewardess) {
@@ -195,20 +146,24 @@ void Data_base::import_flights() {
 
 void Data_base::assignPassengers()
 {
-    for (auto flight : flights)
+    random_device rd;
+    mt19937 mt(rd());
+    std::uniform_int_distribution<int> distribution2(1, 2);
+    for (auto &flight : flights)
     {
+    std::uniform_int_distribution<int> distribution1(2, flight.get_plane().get_sitting_places());    
+    int random_num_of_passnegers = distribution1(mt);
         // random_device rd1;
         // mt19937 mt1(rd1());
         // uniform_real_distribution<> dist1(2, flight.get_plane().get_sitting_places()); //losowy numer od 2 do ilosci miejsc siedzacych
         // int random = dist1(mt1);
-        int random = 5;
-        for(int i = 0; i < random; i++)
+        for(int i = 0; i < random_num_of_passnegers; i++)
         {
             // random_device rd2;      //losowanie klasy (1/2) dla pasazera
             // mt19937 mt2(rd2());
             // uniform_real_distribution<> dist2(1, 2); //losowy numer od 2 do ilosci miejsc siedzacych
             // int random2 = dist2(mt2);        
-            int random2 = 1;    
+            int random_class = distribution2(mt);
 
             Person random_person = people[rand() % people.size()];
 
@@ -221,7 +176,7 @@ void Data_base::assignPassengers()
                 }
             }
 
-            if (random2 == 1)
+            if (random_class == 1)
             {
                 FirstClassTicket ticket(flight.get_departure(), flight.get_arrival(), flight.get_date(), flight.get_id());
                 FirstClass passenger(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
@@ -231,7 +186,7 @@ void Data_base::assignPassengers()
                 std::shared_ptr<FirstClass> passager = std::make_shared<FirstClass>(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
                 passengers.push_back(std::move(passager));
             }
-            else if (random2 == 2)
+            else if (random_class == 2)
             {
                 SecondClassTicket ticket(flight.get_departure(), flight.get_arrival(), flight.get_date(), flight.get_id());
                 SecondClass passenger(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
@@ -245,4 +200,9 @@ void Data_base::assignPassengers()
         }
 
     }
+}
+
+std::vector<Flight> Data_base::get_flights()
+{
+    return flights;
 }
