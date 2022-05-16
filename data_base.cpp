@@ -153,19 +153,15 @@ void Data_base::assignPassengers()
     {
     std::uniform_int_distribution<int> distribution1(2, flight.get_plane().get_sitting_places());    
     int random_num_of_passnegers = distribution1(mt);
-        // random_device rd1;
-        // mt19937 mt1(rd1());
-        // uniform_real_distribution<> dist1(2, flight.get_plane().get_sitting_places()); //losowy numer od 2 do ilosci miejsc siedzacych
-        // int random = dist1(mt1);
+
         for(int i = 0; i < random_num_of_passnegers; i++)
         {
-            // random_device rd2;      //losowanie klasy (1/2) dla pasazera
-            // mt19937 mt2(rd2());
-            // uniform_real_distribution<> dist2(1, 2); //losowy numer od 2 do ilosci miejsc siedzacych
-            // int random2 = dist2(mt2);        
-            int random_class = distribution2(mt);
+            std::uniform_int_distribution<int> distribution3(0, people.size());    
 
-            Person random_person = people[rand() % people.size()];
+            int random_class = distribution2(mt);
+            int random_person_num = distribution3(mt);
+
+            Person random_person = people[random_person_num];
 
             for(std::vector<Person>::iterator iter = people.begin(); iter != people.end(); ++iter ) //usuwanie czlowieka o danym peselu, moze mozna latwiej
             {
@@ -205,4 +201,9 @@ void Data_base::assignPassengers()
 std::vector<Flight> Data_base::get_flights()
 {
     return flights;
+}
+
+std::vector<std::shared_ptr<Person>> Data_base::get_passengers()
+{
+    return passengers;
 }
