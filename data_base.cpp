@@ -12,6 +12,7 @@ Data_base::Data_base(
         import_passengers();
         import_workers();
         import_flights();
+        assignPassengers();
     }
 
 void Data_base::import_passengers() {
@@ -196,27 +197,29 @@ void Data_base::assignPassengers()
 {
     for (auto flight : flights)
     {
-        random_device rd1;
-        mt19937 mt1(rd1());
-        uniform_real_distribution<> dist1(2, flight.get_plane().get_sitting_places()); //losowy numer od 2 do ilosci miejsc siedzacych
-        int random = dist1(mt1);
+        // random_device rd1;
+        // mt19937 mt1(rd1());
+        // uniform_real_distribution<> dist1(2, flight.get_plane().get_sitting_places()); //losowy numer od 2 do ilosci miejsc siedzacych
+        // int random = dist1(mt1);
+        int random = 5;
         for(int i = 0; i < random; i++)
         {
-            random_device rd2;      //losowanie klasy (1/2) dla pasazera
-            mt19937 mt2(rd2());
-            uniform_real_distribution<> dist2(1, 2); //losowy numer od 2 do ilosci miejsc siedzacych
-            int random2 = dist2(mt2);            
+            // random_device rd2;      //losowanie klasy (1/2) dla pasazera
+            // mt19937 mt2(rd2());
+            // uniform_real_distribution<> dist2(1, 2); //losowy numer od 2 do ilosci miejsc siedzacych
+            // int random2 = dist2(mt2);        
+            int random2 = 1;    
 
             Person random_person = people[rand() % people.size()];
 
-            for( std::vector<Person>::iterator iter = people.begin(); iter != people.end(); ++iter ) //usuwanie czlowieka o danym peselu, moze mozna latwiej
+            for(std::vector<Person>::iterator iter = people.begin(); iter != people.end(); ++iter ) //usuwanie czlowieka o danym peselu, moze mozna latwiej
             {
                 if( (*iter).getPesel() == random_person.getPesel())
                 {
                     people.erase(iter);
                     break;
                 }
-}
+            }
 
             if (random2 == 1)
             {
@@ -228,7 +231,7 @@ void Data_base::assignPassengers()
                 std::shared_ptr<FirstClass> passager = std::make_shared<FirstClass>(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
                 passengers.push_back(std::move(passager));
             }
-            else if (random2 == 1)
+            else if (random2 == 2)
             {
                 SecondClassTicket ticket(flight.get_departure(), flight.get_arrival(), flight.get_date(), flight.get_id());
                 SecondClass passenger(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
