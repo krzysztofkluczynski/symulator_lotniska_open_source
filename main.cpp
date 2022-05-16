@@ -16,6 +16,7 @@
 using namespace std;
 
 double geo_distance(string city1, string city2) {
+    // Wroclaw Warszawa Gdansk Kopenhaga Mediolan Barcelona Londyn Krakow <- miasta do bazy
     // do mapy podajemy liczby w nastepujacym formacie:
     // Warszawa ma wspolrzedne 52°15′N 21°00′E
     // podajemy 52, 15, 21, 0
@@ -27,7 +28,13 @@ double geo_distance(string city1, string city2) {
     map<string, Fourth> city_map;
     city_map["Wroclaw"] = {51, 6, 17, 2};
     city_map["Warszawa"] = {52, 15, 21, 0};
-    city_map["Gdansk"] = {54, 21, 18, 40};
+    city_map["Gdansk"] = {54, 21, 18, 40};    
+    city_map["Kopenhaga"] = {55, 40, 12, 34};
+    city_map["Mediolan"] = {45, 27, 9, 11};
+    city_map["Barcelona"] = {41, 23, 2, 9};
+    city_map["Londyn"] = {51, 30, 0, 7};
+    city_map["Krakow"] = {50, 3, 19, 56};
+
     Fourth city_1 = city_map[city1];
     Fourth city_2 = city_map[city2];
     double x1_degree = city_1[0];
