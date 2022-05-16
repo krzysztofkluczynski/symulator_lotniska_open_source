@@ -53,7 +53,7 @@ double geo_distance(string city1, string city2) {
 int main() {
     Data_base db("people.txt", "workers.txt", "flights.txt");
 
-    cout << db.get_passengers()[0]->getName() << endl;
+    cout << db.get_passengers()[0]->getDestinationCity().getName() << endl;
 
 
     cout << "Symulacja skonczona" << endl;

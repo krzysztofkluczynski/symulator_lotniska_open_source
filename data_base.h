@@ -28,7 +28,7 @@ class Data_base
 
         std::vector<Person> people;
 
-        std::vector<std::shared_ptr<Person>> passengers;  // <-- to vectora wszystkich pasazerow bedzie, potrzebna potem do losowania
+        std::vector<std::shared_ptr<Passenger>> passengers;  // <-- to vectora wszystkich pasazerow bedzie, potrzebna potem do losowania
 
 
         std::vector<Flight> flights;
@@ -47,7 +47,7 @@ class Data_base
         std::string flights_path);
 
         std::vector<Flight> get_flights();
-        std::vector<std::shared_ptr<Person>> get_passengers();
+        std::vector<std::shared_ptr<Passenger>> get_passengers();
 };
 
 

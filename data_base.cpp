@@ -203,7 +203,7 @@ std::vector<Flight> Data_base::get_flights()
     return flights;
 }
 
-std::vector<std::shared_ptr<Person>> Data_base::get_passengers()
+std::vector<std::shared_ptr<Passenger>> Data_base::get_passengers()
 {
     return passengers;
 }
