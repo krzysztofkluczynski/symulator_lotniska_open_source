@@ -11,8 +11,7 @@
 #include "../ticket.h"
 #include "../city.h"
 
-
-
+using namespace std;
 #include <sstream>
 
 TEST_CASE("Simple classes tests", "[tests]") 
@@ -226,9 +225,9 @@ TEST_CASE("planes", "[planes]") {
 }
 
 TEST_CASE("flight class") {
-    Light_plane lp("AAAA");
-    Date date5(31, 12, 2020);
-    Flight flight(1, date5, City("Wroclaw"), City("Warszawa"), lp);
+    shared_ptr<Small_plane> plane = std::make_shared<Small_plane>("AAAA");
+    Date date5(12, 12, 2020);
+    Flight flight(1, date5, City("Wroclaw"), City("Warszawa"), move(plane));
 
     SECTION("Setters/num of workers") {
         Stewardess stew("Anna", "Kowalska", "12345678902", 1);
@@ -253,18 +252,4 @@ TEST_CASE("flight class") {
         CHECK(flight.other_num() == 1);
         CHECK(flight.workers_number() == 4);
     }
-
-    SECTION("plane") {
-        CHECK(flight.get_plane().get_plane_name() == "AAAA");
-        Medium_plane medium("beta");
-        flight.set_plane(medium);
-        CHECK(flight.get_plane().get_plane_name() == "beta");
-    }
-
-    SECTION("Passengers test") {
-        //tddddddd
-        int i = 0;
-    }
-
-
 }
