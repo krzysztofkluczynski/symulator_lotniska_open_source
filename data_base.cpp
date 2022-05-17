@@ -65,21 +65,21 @@ void Data_base::import_workers() {
     file.close();
 }
 
-unique_ptr<Planes> Data_base::create_plane(std::string p_type, std::string p_name){
+shared_ptr<Planes> Data_base::create_plane(std::string p_type, std::string p_name){
         if (p_type=="0") {
-            std::unique_ptr<Light_plane> plane = std::make_unique<Light_plane>(p_name);
+            std::shared_ptr<Light_plane> plane = std::make_shared<Light_plane>(p_name);
             return plane;
         }
         else if (p_type=="1") {
-            std::unique_ptr<Small_plane> plane = std::make_unique<Small_plane>(p_name);
+            std::shared_ptr<Small_plane> plane = std::make_shared<Small_plane>(p_name);
             return plane;
         }
         else if (p_type=="2") {
-            std::unique_ptr<Medium_plane> plane = std::make_unique<Medium_plane>(p_name);
+            std::shared_ptr<Medium_plane> plane = std::make_shared<Medium_plane>(p_name);
             return plane;
         }
         else if (p_type=="3") {
-            std::unique_ptr<Big_plane> plane = std::make_unique<Big_plane>(p_name);
+            std::shared_ptr<Big_plane> plane = std::make_shared<Big_plane>(p_name);
                 return plane;
         }
         else {
@@ -100,7 +100,24 @@ void Data_base::import_flights() {
         file >> arrival;
         file >> p_name;
         file >> p_type;
-        Flight flight(stoul(id), Date(stoi(day), stoi(month), stoi(year)), City(departure), City(arrival), *(create_plane(p_type, p_name)));
+        // if (p_type=="0") {
+        // Flight flight(stoul(id), Date(stoi(day), stoi(month), stoi(year)), City(departure), City(arrival), Light_plane(p_name));
+        // }
+        // else if (p_type=="1") {
+        // Flight flight(stoul(id), Date(stoi(day), stoi(month), stoi(year)), City(departure), City(arrival), Small_plane(p_name));
+        // }
+        // else if (p_type=="2") {
+        // Flight flight(stoul(id), Date(stoi(day), stoi(month), stoi(year)), City(departure), City(arrival), Medium_plane(p_name));
+        // }
+        // else if (p_type=="3") {
+        // Flight flight(stoul(id), Date(stoi(day), stoi(month), stoi(year)), City(departure), City(arrival), Big_plane(p_name));
+        // }
+        // else {
+        //     Medium_plane plane(p_name);
+        //     throw InvalidPlaneType();
+        // }
+        auto ptr = create_plane(p_type, p_name);
+        Flight flight(stoul(id), Date(stoi(day), stoi(month), stoi(year)), City(departure), City(arrival), move(ptr));
 
         for (auto stew : stewardess) {
             if (flight.get_id() == stew.get_flight_num()) {

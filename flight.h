@@ -19,7 +19,7 @@ class Flight {
         Date date;
         City departure;
         City arrival;
-        Planes& plane;
+        std::shared_ptr<Planes> plane;
         std::vector<Stewardess> stewardess;
         std::vector<Pilot> pilot;
         std::vector<LuggageMan> luggage_man;
@@ -32,7 +32,7 @@ class Flight {
         Date date,
         City departure,
         City arrival,  
-        Planes& plane,
+        std::shared_ptr<Planes> plane,
         std::vector<Stewardess> stewardess = {},
         std::vector<Pilot> pilot = {},
         std::vector<LuggageMan> luggage_man = {},
@@ -40,7 +40,7 @@ class Flight {
         std::vector<FirstClass> first_class = {},
         std::vector<SecondClass> second_class = {});
 
-        void set_plane(Planes& plane);
+        void set_plane(std::shared_ptr<Planes> plane);
 
         unsigned int get_id();
         Date get_date();
