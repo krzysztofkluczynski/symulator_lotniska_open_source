@@ -50,10 +50,6 @@ void Light_plane::print() const {
     cout << "\nprice multiplier: " << price_multiplier;
 }
 
-double Light_plane::calculate_price(int taken) {
-    return taken;
-}
-
 Small_plane::Small_plane(string plane_name, int sitting_places, float price_multiplier) :
 Planes(plane_name, sitting_places), price_multiplier(price_multiplier) {}
 
@@ -68,10 +64,6 @@ void Small_plane::set_price_multiplier(float new_multi) {
 void Small_plane::print() const {
     Planes::print();
     cout << "\nprice multiplier: " << price_multiplier;
-}
-
-double Small_plane::calculate_price(int taken) {
-    return taken;
 }
 
 Medium_plane::Medium_plane(string plane_name, int sitting_places, float price_multiplier) :
@@ -90,10 +82,6 @@ void Medium_plane::print() const {
     cout << "\nprice multiplier: " << price_multiplier;
 }
 
-double Medium_plane::calculate_price(int taken) {
-    return taken;
-}
-
 Big_plane::Big_plane(string plane_name, int sitting_places, float price_multiplier) :
 Planes(plane_name, sitting_places), price_multiplier(price_multiplier) {}
 
@@ -108,8 +96,4 @@ void Big_plane::set_price_multiplier(float new_multi) {
 void Big_plane::print() const {
     Planes::print();
     cout << "\nprice multiplier: " << price_multiplier;
-}
-
-double Big_plane::calculate_price(int taken) {
-    return taken;
 }

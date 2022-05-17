@@ -12,7 +12,6 @@ class Planes {
         Planes(std::string plane_name, int sitting_places);
         void print() const;
         virtual ~Planes();
-        virtual double calculate_price(int taken_seats)=0;
 
         std::string get_plane_name() const;
         unsigned int get_sitting_places() const;
@@ -28,7 +27,6 @@ class Light_plane : public Planes {
         float price_multiplier;
     public:
         Light_plane(std::string plane_name, int sitting_places=30, float price_multiplier=1.02);
-        virtual double calculate_price(int taken_seats);// do zdefiniowania
         void print() const;
 
         float get_price_multiplier();
@@ -40,7 +38,6 @@ class Small_plane : public Planes {
         float price_multiplier;
     public:
         Small_plane(std::string plane_name, int sitting_places=70, float price_multiplier=1.018);
-        virtual double calculate_price(int taken_seats);
         void print() const;
 
         float get_price_multiplier();
@@ -52,7 +49,6 @@ class Medium_plane : public Planes {
         float price_multiplier;
     public:
         Medium_plane(std::string plane_name, int sitting_places=15, float price_multiplier=1.013);
-        virtual double calculate_price(int taken_seats);
         void print() const;
 
         float get_price_multiplier();
@@ -64,7 +60,6 @@ class Big_plane : public Planes {
         float price_multiplier;
     public:
         Big_plane(std::string plane_name, int sitting_places=200, float price_multiplier=1.01);
-        virtual double calculate_price(int taken_seats);
         void print() const;
 
         float get_price_multiplier();
