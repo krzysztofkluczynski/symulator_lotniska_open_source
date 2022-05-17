@@ -39,7 +39,7 @@ class Small_plane : public Planes {
     protected:
         float price_multiplier;
     public:
-        Small_plane(std::string plane_name, int sitting_places=70, float price_multiplier=1.018);
+        Small_plane(std::string plane_name, int sitting_places=10, float price_multiplier=1.018);
         virtual double calculate_price(int taken_seats);
         void print() const;
 
@@ -51,7 +51,7 @@ class Medium_plane : public Planes {
     protected:
         float price_multiplier;
     public:
-        Medium_plane(std::string plane_name, int sitting_places=15, float price_multiplier=1.013);
+        Medium_plane(std::string plane_name, int sitting_places=60, float price_multiplier=1.013);
         virtual double calculate_price(int taken_seats);
         void print() const;
 
