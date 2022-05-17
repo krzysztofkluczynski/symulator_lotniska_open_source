@@ -7,7 +7,7 @@ Flight::Flight(
         Date date,
         City departure,
         City arrival,  
-        Planes& plane,
+        shared_ptr<Planes> plane,
         vector<Stewardess> stewardess,
         vector<Pilot> pilot,
         vector<LuggageMan> luggage_man,
@@ -15,7 +15,7 @@ Flight::Flight(
         vector<FirstClass> first_class,
         vector<SecondClass> second_class) :
         id(id), date(date), departure(departure),
-        arrival(arrival),plane(plane), 
+        arrival(arrival), plane(move(plane)), 
         stewardess(stewardess), pilot(pilot), 
         luggage_man(luggage_man), other(other), 
         first_class(first_class), second_class(second_class) {}
@@ -54,7 +54,7 @@ void Flight::set_departure(City new_departure) {
 }
 
 Planes& Flight::get_plane() {
-    return plane;
+    return *plane;
 }
 
 vector<Stewardess> Flight::get_stewardess() {
@@ -120,8 +120,8 @@ void Flight::add_second_class(SecondClass new_second_class) {
     second_class.push_back(new_second_class);
 }
 
-void Flight::set_plane(Planes& new_plane) {
-    plane = new_plane;
+void Flight::set_plane(shared_ptr<Planes> new_plane) {
+    plane = move(new_plane);
 }
 
 int Flight::passengers_number() {
@@ -187,7 +187,7 @@ void Flight::remove_passenger(string pesel) {
 }
 
 bool Flight::empty_seat() {
-    if (passengers_number() >= plane.get_sitting_places()) {
+    if (passengers_number() >= plane->get_sitting_places()) {
         return false;
     }
     return true;

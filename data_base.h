@@ -37,7 +37,7 @@ class Data_base
         void import_workers();
         void import_flights();
 
-        std::unique_ptr<Planes> create_plane(std::string p_type, std::string p_name);
+        std::shared_ptr<Planes> create_plane(std::string p_type, std::string p_name);
         void assignPassengers();
 
     public: 
