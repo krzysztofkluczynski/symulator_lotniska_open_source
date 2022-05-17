@@ -171,8 +171,8 @@ TEST_CASE("Simple classes tests", "[tests]")
 
     SECTION("workers tests")
     {
-        Stewardess s1("anna", "nowak", "12345678901");
-        Stewardess s2("kuba", "kowal", "12345678901", Price(420, 0));
+        Stewardess s1("anna", "nowak", "12345678901", 1);
+        Stewardess s2("kuba", "kowal", "12345678901", 1, Price(420, 0));
 
         CHECK(s1.getName() == "anna");
         CHECK(s1.getSurname() == "nowak");
@@ -213,7 +213,7 @@ TEST_CASE("planes", "[planes]") {
     SECTION("medium plane getters") {
         Medium_plane lp("AAAA");
         CHECK(lp.get_plane_name() == "AAAA");
-        CHECK(lp.get_sitting_places() == 120);
+        CHECK(lp.get_sitting_places() == 15);
         CHECK(lp.get_price_multiplier()==1.013f);
     }
 
@@ -227,13 +227,14 @@ TEST_CASE("planes", "[planes]") {
 
 TEST_CASE("flight class") {
     Light_plane lp("AAAA");
-    Flight flight(lp);
+    Date date5(31, 12, 2020);
+    Flight flight(1, date5, City("Wroclaw"), City("Warszawa"), lp);
 
     SECTION("Setters/num of workers") {
-        Stewardess stew("Anna", "Kowalska", "12345678902");
-        Pilot pilot("Piotr", "Nowak", "09876542146");
-        LuggageMan luggage("Ola", "Kowalczyk", "22222222222");
-        Other other("Tom", "Json", "33333333333");
+        Stewardess stew("Anna", "Kowalska", "12345678902", 1);
+        Pilot pilot("Piotr", "Nowak", "09876542146", 1);
+        LuggageMan luggage("Ola", "Kowalczyk", "22222222222", 1);
+        Other other("Tom", "Json", "33333333333", 1);
         
         CHECK(flight.stewardess_num() == 0);
         CHECK(flight.pilot_num() == 0);
