@@ -9,7 +9,6 @@
 #include "worker_classes.h"
 #include "planes.h" //dodalem te dwa pliki do testow
 #include "flight.h" //dopisz sobie w launch.json
-#include "data_base.h"
 #include "interface.h"
 
 
@@ -17,12 +16,12 @@ using namespace std;
 
 
 int main() {
-    Data_base db("people.txt", "workers.txt", "flights.txt");
+    DataBase db("people.txt", "workers.txt", "flights.txt");
+    Interface interface(db);
+    interface.run();
 
-    cout << db.get_passengers()[0]->getDestinationCity().getName() << endl;
+    // cout << db.get_passengers()[0]->getDestinationCity().getName() << endl;
 
-
-    cout << "Symulacja skonczona" << endl;
 
     return 0;
 }

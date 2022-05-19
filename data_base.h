@@ -9,8 +9,7 @@
 #include "passenger_classes.h"
 #include <random>
 
-
-class Data_base 
+class DataBase 
 {
     private:
         std::string people_path;
@@ -41,13 +40,15 @@ class Data_base
         void assignPassengers();
 
     public: 
-        Data_base(
+        DataBase(
         std::string people_path, 
         std::string workers_path, 
         std::string flights_path);
 
         std::vector<Flight> get_flights();
         std::vector<std::shared_ptr<Passenger>> get_passengers();
+
+        friend class Interface;
 };
 
 

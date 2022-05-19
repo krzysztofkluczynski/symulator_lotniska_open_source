@@ -14,6 +14,9 @@ class Passenger: public Person          //to jako klasa czysto wirtualna? zeby p
         Passenger(std::string name, std::string surname, std::string pesel);
         virtual ~Passenger() = default;   
 
+
+        //virtual Ticket getTicket() const = 0;
+
         virtual City getSourceCity() const = 0;
         virtual City getDestinationCity() const = 0;
         virtual unsigned int getFlightId() const = 0;

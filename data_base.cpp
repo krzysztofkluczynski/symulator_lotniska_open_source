@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Data_base::Data_base(
+DataBase::DataBase(
     string people_path, 
     string workers_path,
     string flights_path) :
@@ -15,7 +15,7 @@ Data_base::Data_base(
         assignPassengers();
     }
 
-void Data_base::import_passengers() {
+void DataBase::import_passengers() {
     fstream file;
     file.open(people_path, ios::in);
     if (!file.good()) throw "invalid file";
@@ -31,7 +31,7 @@ void Data_base::import_passengers() {
     file.close();
 }
 
-void Data_base::import_workers() {
+void DataBase::import_workers() {
     fstream file;
     file.open(workers_path, ios::in);
     if (!file.good()) throw "invalid file";
@@ -65,7 +65,7 @@ void Data_base::import_workers() {
     file.close();
 }
 
-shared_ptr<Planes> Data_base::create_plane(std::string p_type, std::string p_name){
+shared_ptr<Planes> DataBase::create_plane(std::string p_type, std::string p_name){
         if (p_type=="0") {
             std::shared_ptr<Light_plane> plane = std::make_shared<Light_plane>(p_name);
             return plane;
@@ -87,7 +87,7 @@ shared_ptr<Planes> Data_base::create_plane(std::string p_type, std::string p_nam
         }
 }
 
-void Data_base::import_flights() {
+void DataBase::import_flights() {
     fstream file;
     file.open(flights_path, ios::in);
     if (!file.good()) throw "invalid file";
@@ -161,7 +161,7 @@ void Data_base::import_flights() {
     file.close();
 }
 
-void Data_base::assignPassengers()
+void DataBase::assignPassengers()
 {
     random_device rd;
     mt19937 mt(rd());
@@ -215,12 +215,12 @@ void Data_base::assignPassengers()
     }
 }
 
-std::vector<Flight> Data_base::get_flights()
+std::vector<Flight> DataBase::get_flights()
 {
     return flights;
 }
 
-std::vector<std::shared_ptr<Passenger>> Data_base::get_passengers()
+std::vector<std::shared_ptr<Passenger>> DataBase::get_passengers()
 {
     return passengers;
 }

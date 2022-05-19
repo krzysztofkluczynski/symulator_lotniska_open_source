@@ -1,10 +1,13 @@
 #include "interface.h"
 #include <algorithm>
 
+    using namespace std::this_thread; // sleep_for, sleep_until
+    using namespace std::chrono; // nanoseconds, system_clock, second
+
 using namespace std;
 
 Interface::Interface(
-        Data_base p_db,
+        const DataBase& p_db,
         Date p_current_date,
         Date p_stop_date)
         : db(p_db), current_date(p_current_date), stop_date(p_stop_date) {}
@@ -20,51 +23,43 @@ Date Interface::getCurrentDate() const
 }
 
 
-int Interface::menu()
+void Interface::run()
 {
-    int options[6] = {1, 2, 3, 4, 5, 6};
-    int choice;
-    cout << "MENU - " << "CURRENT DATE: " << current_date << endl;
-    cout << "1. Buy first class ticket" << endl;
-    cout << "2. Buy second class ticket" << endl;
-    cout << "3. Print all flights" << endl;
-    cout << "4. Find passanger by pesel" << endl;
-    cout << "5. Next day" << endl;
-    cout << "6. QUIT" << endl;
-    cout << "Your choice: ";
-    cin >> choice;
-    cout << endl;
-    if (std::find(std::begin(options), std::end(options), choice) != std::end(options))
+    while(current_date <= stop_date)
     {
-        return choice;
+        cout << endl << "TODAY DATE: " << current_date << endl << endl;
+        sleep_for(1500ms);
+        for(auto &passenger : db.passengers)
+        {
+            if(passenger->getDate() == current_date)
+            {
+                cout << passenger->getName() << " " << passenger->getSurname() << " buys ticket for flight with id: " << passenger->getFlightId() << " from " << passenger->getSourceCity().getName() << " to " << passenger->getDestinationCity().getName() << "." << endl;
+                sleep_for(500ms);
+            }
+        }
+
+
+        cout << endl << endl << endl << "Flights this day: " << endl;
+
+        for(auto flight: db.flights)
+        {
+            if(flight.get_date() == current_date)
+            {
+                cout << "Plane " << flight.get_plane().get_plane_name() << " took of from " << flight.get_departure().getName() << " to " << flight.get_arrival().getName() << endl;
+                cout << "Capacity: " << flight.get_first_class().size() + flight.get_second_class().size() << " / " << flight.get_plane().get_sitting_places() << endl << endl; 
+                sleep_for(500ms);
+            }
+        }
+        current_date++;
+        cout << "-------------------------" << endl;
     }
-    throw InvalidInput();
 }
 
 
-void Interface::addFirstClass()
-{
-    cout << "brak implemtacji" << endl << endl;
-}
 
-void Interface::addSecondClass()
-{
-    cout << "brak implemtacji" << endl << endl;
-}
-
-void Interface::printFlights()
-{
-    cout << "brak implemtacji" << endl << endl;
-}
-
-void Interface::findByPesel()
-{
-    cout << "brak implemtacji" << endl << endl;
-}
-
-void Interface::nextDay()
-{
-    cout << endl <<"date changed FROM: " << current_date << " TO: " << ++current_date << endl << endl;    
-}
+// void Interface::nextDay()
+// {
+//     cout << endl <<"date changed FROM: " << current_date << " TO: " << ++current_date << endl << endl;    
+// }
 
 
