@@ -9,48 +9,45 @@
 #include "passenger_classes.h"
 #include <random>
 
-class DataBase 
+class DataBase
 {
-    private:
-        std::string people_path;
-        std::string workers_path;
-        std::string planes_path;
-        std::string flights_path;
-        
-        std::vector<Other> other;
-        std::vector<LuggageMan> luggage_man;
-        std::vector<Stewardess> stewardess;
-        std::vector<Pilot> pilot;
+private:
+    std::string people_path;
+    std::string workers_path;
+    std::string planes_path;
+    std::string flights_path;
 
-        std::vector<FirstClass> first;          //TE DWA WEKTORY CHHYBA BEDA DO USUNIECIA W TAKIM RAZIE I ZASTAPI JE WEKTOR PEOPLE
-        std::vector<SecondClass> second;
+    std::vector<Other> other;
+    std::vector<LuggageMan> luggage_man;
+    std::vector<Stewardess> stewardess;
+    std::vector<Pilot> pilot;
 
-        std::vector<Person> people;
+    std::vector<FirstClass> first;
+    std::vector<SecondClass> second;
 
-        std::vector<std::shared_ptr<Passenger>> passengers;  // <-- to vectora wszystkich pasazerow bedzie, potrzebna potem do losowania
+    std::vector<Person> people;
 
+    std::vector<std::shared_ptr<Passenger>> passengers;
 
-        std::vector<Flight> flights;
+    std::vector<Flight> flights;
 
-        void import_passengers();   //<- TO TEZ PEWNIE BEDZIE NA ZASADZIE IMPORT PEOPLE
-        void import_workers();
-        void import_flights();
+    void import_passengers();
+    void import_workers();
+    void import_flights();
 
-        std::shared_ptr<Planes> create_plane(std::string p_type, std::string p_name);
-        void assignPassengers();
+    std::shared_ptr<Planes> create_plane(std::string p_type, std::string p_name);
+    void assignPassengers();
 
-    public: 
-        DataBase(
-        std::string people_path, 
-        std::string workers_path, 
+public:
+    DataBase(
+        std::string people_path,
+        std::string workers_path,
         std::string flights_path);
 
-        std::vector<Flight> get_flights();
-        std::vector<std::shared_ptr<Passenger>> get_passengers();
+    std::vector<Flight> get_flights();
+    std::vector<std::shared_ptr<Passenger>> get_passengers();
 
-        friend class Interface;
+    friend class Interface;
 };
-
-
 
 #endif

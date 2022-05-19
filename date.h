@@ -9,8 +9,9 @@ private:
     unsigned int year;
     unsigned int month;
     unsigned int day;
+
 public:
-    Date(unsigned int p_day, unsigned int p_month,unsigned int p_year);
+    Date(unsigned int p_day, unsigned int p_month, unsigned int p_year);
     void setYear(unsigned int p_year);
     void setMonth(unsigned int p_month);
     void setDay(unsigned int p_day);
@@ -25,15 +26,11 @@ public:
     bool operator>=(const Date &date);
     bool operator<=(const Date &date);
 
-    Date& operator++();
+    Date &operator++();
 
     Date operator++(int);
 
-
-
-
-    
-    friend std::ostream& operator<<(std::ostream& out, const Date& date);
+    friend std::ostream &operator<<(std::ostream &out, const Date &date);
     std::string toString() const;
     bool isValid() const;
 };

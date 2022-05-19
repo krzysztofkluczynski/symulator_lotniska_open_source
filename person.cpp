@@ -5,29 +5,27 @@
 using namespace std;
 
 Person::Person(string p_name, string p_surname, string p_pesel)
-: name(p_name), surname(p_surname)
+    : name(p_name), surname(p_surname)
 {
     int check = 0;
     string ch;
     if (p_pesel.length() != 11)
         throw PeselException(p_pesel);
-    
-    for(int i=0; i < 11; i++)
+
+    for (int i = 0; i < 11; i++)
     {
         try
         {
             ch = p_pesel[i];
             check = stoi(ch);
         }
-        catch(...)
+        catch (...)
         {
             throw PeselException(p_pesel);
         }
-        
     }
 
     pesel = p_pesel;
-    
 }
 
 Person::~Person() {}
@@ -52,31 +50,27 @@ string Person::getSurname() const
     return surname;
 }
 
-
 void Person::setPesel(string p_pesel)
 {
     int check = 0;
     string ch;
     if (p_pesel.length() != 11)
         throw PeselException(p_pesel);
-    
 
-    for(int i=0; i < 11; i++)
+    for (int i = 0; i < 11; i++)
     {
         try
         {
             ch = p_pesel[i];
             check = stoi(ch);
         }
-        catch(...)
+        catch (...)
         {
             throw PeselException(p_pesel);
         }
-        
     }
 
     pesel = p_pesel;
-    
 }
 
 string Person::getPesel() const

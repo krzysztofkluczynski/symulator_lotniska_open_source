@@ -2,15 +2,16 @@
 #define PERSON_H
 #include <string>
 
-class Person 
+class Person
 {
 protected:
     std::string name;
     std::string surname;
     std::string pesel;
+
 public:
     Person(std::string name, std::string surname, std::string pesel);
-    virtual ~Person();    
+    virtual ~Person();
 
     void setName(std::string p_name);
     std::string getName() const;

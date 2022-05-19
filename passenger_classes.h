@@ -6,38 +6,35 @@
 #include "ticket.h"
 #include "city.h"
 
-class Passenger: public Person          //to jako klasa czysto wirtualna? zeby pasazerowie mogli byc tylko pierwszej/drugiej klasy a nie tylko pasazerowie
+class Passenger : public Person
 {
-    private:   // <-- private bo nie chcemy zeby inne klasy to oddziedziczyly
-  
-    public:
-        Passenger(std::string name, std::string surname, std::string pesel);
-        virtual ~Passenger() = default;   
+private:
+public:
+    Passenger(std::string name, std::string surname, std::string pesel);
+    virtual ~Passenger() = default;
 
+    // virtual Ticket getTicket() const = 0;
 
-        //virtual Ticket getTicket() const = 0;
+    virtual City getSourceCity() const = 0;
+    virtual City getDestinationCity() const = 0;
+    virtual unsigned int getFlightId() const = 0;
+    virtual Date getDate() const = 0;
 
-        virtual City getSourceCity() const = 0;
-        virtual City getDestinationCity() const = 0;
-        virtual unsigned int getFlightId() const = 0;
-        virtual Date getDate() const = 0;
-        //TU MOZNA DOPISAC WIRTUALNE GETTERY DO WSZYSTKIEGO CZEGO POTRZBUJEMY Z BILETU I ZDEFINIOWAC JE W KLASACH POCHODNYCH
+    virtual bool isExtraFood() const = 0;
+    virtual bool isExtraArmachair() const = 0;
+    virtual bool isExtraPillows() const = 0;
+    virtual bool isWindowSeat() const = 0;
 
-        virtual bool isExtraFood() const = 0;        
-        virtual bool isExtraArmachair() const = 0;
-        virtual bool isExtraPillows() const = 0;
-        virtual bool isWindowSeat() const = 0;
-
-        friend std::ostream &operator<<(std::ostream& out, const Passenger& Passenger);
+    friend std::ostream &operator<<(std::ostream &out, const Passenger &Passenger);
 };
 
-
-class FirstClass: public Passenger
+class FirstClass : public Passenger
 {
 private:
     FirstClassTicket ticket;
+
 public:
-    FirstClass(std::string name, std::string surname, std::string pasel,const FirstClassTicket& ticket);
+    FirstClass(std::string name, std::string surname, std::string pasel, const FirstClassTicket &ticket);
 
     City getSourceCity() const override;
     City getDestinationCity() const override;
@@ -45,26 +42,25 @@ public:
     Date getDate() const override;
 
     FirstClassTicket getTicket() const;
-    void setTicket(const FirstClassTicket& ticket);  
-    
+    void setTicket(const FirstClassTicket &ticket);
+
     bool isExtraFood() const;
     bool isExtraArmachair() const;
     bool isExtraPillows() const;
     bool isWindowSeat() const;
 
-    friend std::ostream &operator<<(std::ostream& out, const FirstClass& Passenger);
-    
-    friend std::ostream &operator<<(std::ostream& out, const FirstClass& passager);
+    friend std::ostream &operator<<(std::ostream &out, const FirstClass &Passenger);
 
+    friend std::ostream &operator<<(std::ostream &out, const FirstClass &passager);
 };
 
-
-class SecondClass: public Passenger
+class SecondClass : public Passenger
 {
 private:
     SecondClassTicket ticket;
+
 public:
-    SecondClass(std::string name, std::string surname, std::string pasel,const SecondClassTicket& ticket);
+    SecondClass(std::string name, std::string surname, std::string pasel, const SecondClassTicket &ticket);
 
     City getSourceCity() const override;
     City getDestinationCity() const override;
@@ -72,14 +68,14 @@ public:
     Date getDate() const override;
 
     SecondClassTicket getTicket() const;
-    void setTicket(const SecondClassTicket& ticket);
+    void setTicket(const SecondClassTicket &ticket);
 
     bool isExtraFood() const;
     bool isExtraArmachair() const;
     bool isExtraPillows() const;
     bool isWindowSeat() const;
 
-    friend std::ostream &operator<<(std::ostream& out, const SecondClass& passager);
+    friend std::ostream &operator<<(std::ostream &out, const SecondClass &passager);
 };
 
 #endif

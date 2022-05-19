@@ -53,9 +53,6 @@ using namespace std;
 Ticket::Ticket(City p_source, City p_destination, Date p_date, unsigned int p_num)
 : source(p_source), destination(p_destination), date(p_date), flight_id(p_num)
 {
-    // base_price = Price(50,0);    //TO ROBOCZA WERSJA DO ZMIANY Z TA CENA
-    //                     //tutaj trzeba doliczyc ta odleglosc i podac cos do pola ceny
-    //                     // numer jest po to zeby potem sprawdzac czy nie ma takich samych biletow, ale to bedzie sprawdzane gdzies wyzej
     double distance = geo_distance(source.getName(), destination.getName());
 
     int price_in_zl = distance;
@@ -115,7 +112,9 @@ FirstClassTicket::FirstClassTicket(City source, City destination, Date date, uns
 
 Price FirstClassTicket::getRealPrice() const
 {
-    return base_price * 1.2f;  //to tez trzeba bedzie zaokraglic zeby wychodzily w miare okej liczby
+    int gr_price = 1.2f * (base_price.getZl()*100) + base_price.getGr();
+    return Price(gr_price / 100, gr_price % 100);
+    ;return base_price * 1.2f;
 }
 
 SecondClassTicket::SecondClassTicket(City source, City destination, Date date, unsigned int num)
@@ -124,6 +123,6 @@ SecondClassTicket::SecondClassTicket(City source, City destination, Date date, u
 
 Price SecondClassTicket::getRealPrice() const
 {
-    return base_price;       //to tak samo do zaaokraglenia
+    return base_price;
 }
 

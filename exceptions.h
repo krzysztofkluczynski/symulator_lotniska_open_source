@@ -3,59 +3,57 @@
 
 #include <stdexcept>
 
-
 class PeselException : public std::invalid_argument
 {
-    public:
-        PeselException(std::string p_pesel);
+public:
+    PeselException(std::string p_pesel);
 };
-
 
 class PassagerNotFound : public std::invalid_argument
 {
-    public: 
-        PassagerNotFound();
+public:
+    PassagerNotFound();
 };
 
 class InvalidInput : public std::invalid_argument
 {
-    public: 
-        InvalidInput();
+public:
+    InvalidInput();
 };
 
 class InvalidClass : public std::invalid_argument
 {
-    public: 
-        InvalidClass();
+public:
+    InvalidClass();
 };
 
 class InvalidPlaneType : public std::invalid_argument
 {
-    public: 
-        InvalidPlaneType();
+public:
+    InvalidPlaneType();
 };
 
 class InvalidWorker : public std::invalid_argument
 {
-    public: 
-        InvalidWorker();
+public:
+    InvalidWorker();
 };
 
 class NegativePriceException : public std::invalid_argument
 {
-    public: 
-        NegativePriceException();
+public:
+    NegativePriceException();
 };
 
 class InvalidPassenger : public std::invalid_argument
 {
-    public: 
-        InvalidPassenger();
+public:
+    InvalidPassenger();
 };
 
 class NoSpaceException : public std::invalid_argument
 {
-    public: 
-        NoSpaceException();
+public:
+    NoSpaceException();
 };
 #endif

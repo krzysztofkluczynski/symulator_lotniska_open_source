@@ -6,6 +6,7 @@ class Price
 {
 private:
     unsigned int gr;
+
 public:
     Price(unsigned int p_zl, unsigned int p_gr);
     Price();
@@ -17,25 +18,23 @@ public:
     unsigned int getGr() const;
 
     bool operator>(const Price &price) const;
-    bool operator<(const Price &price) const ;
+    bool operator<(const Price &price) const;
     bool operator==(const Price &price) const;
     bool operator!=(const Price &price) const;
     bool operator>=(const Price &price) const;
     bool operator<=(const Price &price) const;
 
-
     Price operator+(const Price &price) const;
 
-    Price& operator+=(const Price &price);
+    Price &operator+=(const Price &price);
 
     Price operator*(float x) const;
 
     Price operator*(unsigned int x) const;
 
-    friend std::ostream &operator<<(std::ostream& out, const Price& price);
+    friend std::ostream &operator<<(std::ostream &out, const Price &price);
 
     bool isValid() const;
-
 };
 
 #endif

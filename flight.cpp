@@ -100,7 +100,7 @@ void Flight::add_other(Other new_other) {
 
 
 // sekcja dodawania pasazerow
-void Flight::add_first_class(FirstClass new_first_class) {          //tu jeszcze wyjatek gdy mamy maks osob?
+void Flight::add_first_class(FirstClass new_first_class) {
     if (!empty_seat()) {
         throw NoSpaceException();
     }

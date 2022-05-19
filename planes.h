@@ -6,7 +6,7 @@
 class Planes {
     protected:
         std::string plane_name;
-        unsigned int sitting_places; //wszystkie miejsca siedzace
+        unsigned int sitting_places;
 
     public:
         Planes(std::string plane_name, int sitting_places);
@@ -26,7 +26,7 @@ class Light_plane : public Planes {
     protected:
         float price_multiplier;
     public:
-        Light_plane(std::string plane_name, int sitting_places=30, float price_multiplier=1.02);
+        Light_plane(std::string plane_name, int sitting_places=20, float price_multiplier=1.02);
         void print() const;
 
         float get_price_multiplier();
@@ -37,7 +37,7 @@ class Small_plane : public Planes {
     protected:
         float price_multiplier;
     public:
-        Small_plane(std::string plane_name, int sitting_places=70, float price_multiplier=1.018);
+        Small_plane(std::string plane_name, int sitting_places=60, float price_multiplier=1.018);
         void print() const;
 
         float get_price_multiplier();
@@ -48,7 +48,7 @@ class Medium_plane : public Planes {
     protected:
         float price_multiplier;
     public:
-        Medium_plane(std::string plane_name, int sitting_places=15, float price_multiplier=1.013);
+        Medium_plane(std::string plane_name, int sitting_places=90, float price_multiplier=1.013);
         void print() const;
 
         float get_price_multiplier();

@@ -32,11 +32,14 @@ class Flight {
         Date date,
         City departure,
         City arrival,  
+
         std::shared_ptr<Planes> plane,
+
         std::vector<Stewardess> stewardess = {},
         std::vector<Pilot> pilot = {},
         std::vector<LuggageMan> luggage_man = {},
         std::vector<Other> other = {},
+
         std::vector<FirstClass> first_class = {},
         std::vector<SecondClass> second_class = {});
 
@@ -61,17 +64,17 @@ class Flight {
         std::vector<FirstClass> get_first_class();
         std::vector<SecondClass> get_second_class();
         
-        void add_stewardess(Stewardess); // tu pytanie czy to maja byc 4 metody czy jedna
-        void add_pilot(Pilot); //latwiej zaimplementowac 4 
-        void add_luggage_man(LuggageMan); // ale jako jedna tez pewnie sie da,
-        void add_other(Other); // pytanie jak potrzebujemy potem do database
+        void add_stewardess(Stewardess);
+        void add_pilot(Pilot);
+        void add_luggage_man(LuggageMan);
+        void add_other(Other);
 
-        void add_first_class(FirstClass); // analogiczne pytanie jak wyzej
+        void add_first_class(FirstClass);
         void add_second_class(SecondClass);
 
         int first_class_num();
         int second_class_num();
-        int passengers_number(); // ilu pasazerow
+        int passengers_number();
         
         int stewardess_num();
         int pilot_num();
@@ -79,8 +82,8 @@ class Flight {
         int other_num();
         int workers_number();
 
-        void remove_passenger(std::string pesel); // usuwanie pasazera
-        bool check_passenger(std::string pesel); // sprawdzenie czy pasazer juz ma bilet
+        void remove_passenger(std::string pesel);
+        bool check_passenger(std::string pesel); 
 
         bool empty_seat();
 

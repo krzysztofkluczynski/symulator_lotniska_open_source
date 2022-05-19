@@ -2,10 +2,10 @@
 
 using namespace std;
 Passenger::Passenger(std::string p_name, std::string p_surname, std::string p_pesel)
-: Person(p_name, p_surname, p_pesel) {}
+    : Person(p_name, p_surname, p_pesel) {}
 
-FirstClass::FirstClass(std::string p_name, std::string p_surname, std::string p_pesel, const FirstClassTicket& p_ticket)
-: Passenger(p_name, p_surname, p_pesel), ticket(p_ticket) {}
+FirstClass::FirstClass(std::string p_name, std::string p_surname, std::string p_pesel, const FirstClassTicket &p_ticket)
+    : Passenger(p_name, p_surname, p_pesel), ticket(p_ticket) {}
 
 City FirstClass::getSourceCity() const
 {
@@ -15,7 +15,6 @@ City FirstClass::getDestinationCity() const
 {
     return ticket.getDestination();
 }
-
 
 unsigned int FirstClass::getFlightId() const
 {
@@ -31,7 +30,7 @@ FirstClassTicket FirstClass::getTicket() const
     return ticket;
 }
 
-void FirstClass::setTicket(const FirstClassTicket& p_ticket)
+void FirstClass::setTicket(const FirstClassTicket &p_ticket)
 {
     ticket = p_ticket;
 }
@@ -55,7 +54,7 @@ bool FirstClass::isWindowSeat() const
     return true;
 }
 
-std::ostream &operator<<(std::ostream& out, const FirstClass& passenger)
+std::ostream &operator<<(std::ostream &out, const FirstClass &passenger)
 {
     out << "First class passenger: " << passenger.getName() << " " << passenger.getSurname() << endl;
     out << "PESEL: " << passenger.getPesel() << endl;
@@ -64,8 +63,8 @@ std::ostream &operator<<(std::ostream& out, const FirstClass& passenger)
     return out;
 }
 
-SecondClass::SecondClass(std::string name, std::string surname, std::string pesel, const SecondClassTicket& p_ticket)
-: Passenger(name, surname, pesel), ticket(p_ticket) {}
+SecondClass::SecondClass(std::string name, std::string surname, std::string pesel, const SecondClassTicket &p_ticket)
+    : Passenger(name, surname, pesel), ticket(p_ticket) {}
 
 City SecondClass::getSourceCity() const
 {
@@ -75,7 +74,6 @@ City SecondClass::getDestinationCity() const
 {
     return ticket.getDestination();
 }
-
 
 unsigned int SecondClass::getFlightId() const
 {
@@ -91,7 +89,7 @@ SecondClassTicket SecondClass::getTicket() const
     return ticket;
 }
 
-void SecondClass::setTicket(const SecondClassTicket& p_ticket)
+void SecondClass::setTicket(const SecondClassTicket &p_ticket)
 {
     ticket = p_ticket;
 }
@@ -114,7 +112,7 @@ bool SecondClass::isWindowSeat() const
     return false;
 }
 
-std::ostream &operator<<(std::ostream& out, const SecondClass& passenger)
+std::ostream &operator<<(std::ostream &out, const SecondClass &passenger)
 {
     out << "Second class passenger: " << passenger.getName() << " " << passenger.getSurname() << endl;
     out << "PESEL: " << passenger.getPesel() << endl;

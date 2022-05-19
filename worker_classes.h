@@ -4,73 +4,65 @@
 #include "person.h"
 #include "price.h"
 
-class Worker: public Person
+class Worker : public Person
 {
-    protected:
-        Price salary;
-        unsigned int flight_num;
-    public:
-        Worker(std::string name, std::string surname, std::string pesel,
-        unsigned int flight_num, const Price& salary = Price(3000, 0)); //domyslna wyplata 
-        virtual ~Worker();
+protected:
+    Price salary;
+    unsigned int flight_num;
 
-        Price getPrice() const;
-        void setPrice(const Price& price);
+public:
+    Worker(std::string name, std::string surname, std::string pesel,
+           unsigned int flight_num, const Price &salary = Price(3000, 0)); // domyslna wyplata
+    virtual ~Worker();
 
-        unsigned int get_flight_num();
+    Price getPrice() const;
+    void setPrice(const Price &price);
 
-        virtual unsigned int passengersPerWorker() const = 0;
-        virtual std::string getSpeciality() const = 0;
+    unsigned int get_flight_num();
 
-        friend std::ostream &operator<<(std::ostream& out, const Worker& worker);
+    virtual unsigned int passengersPerWorker() const = 0;
+    virtual std::string getSpeciality() const = 0;
+
+    friend std::ostream &operator<<(std::ostream &out, const Worker &worker);
 };
 
-class Stewardess: public Worker
+class Stewardess : public Worker
 {
-    private:
+private:
+public:
+    Stewardess(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price &salary = Price(4000, 0));
 
-    public:
-        Stewardess(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price& salary = Price(4000, 0));
-
-        unsigned int passengersPerWorker() const override;
-        std::string getSpeciality() const override;
-
+    unsigned int passengersPerWorker() const override;
+    std::string getSpeciality() const override;
 };
 
-class Pilot: public Worker
+class Pilot : public Worker
 {
-    private:
+private:
+public:
+    Pilot(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price &salary = Price(6000, 0));
 
-    public:
-        Pilot(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price& salary = Price(6000, 0));
-
-
-        unsigned int passengersPerWorker() const override;
-        std::string getSpeciality() const override;
-
+    unsigned int passengersPerWorker() const override;
+    std::string getSpeciality() const override;
 };
 
-class LuggageMan: public Worker
+class LuggageMan : public Worker
 {
-    private:
+private:
+public:
+    LuggageMan(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price &salary = Price(3500, 0));
 
-    public:
-        LuggageMan(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price& salary = Price(3500, 0));
-
-        unsigned int passengersPerWorker() const override;
-        std::string getSpeciality() const override;
+    unsigned int passengersPerWorker() const override;
+    std::string getSpeciality() const override;
 };
 
-class Other: public Worker
+class Other : public Worker
 {
-    private:
+private:
+public:
+    Other(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price &salary = Price(3000, 0));
 
-    public:
-        Other(std::string name, std::string surname, std::string pesel, unsigned int flight_num, const Price& salary = Price(3000, 0));
-
-
-        unsigned int passengersPerWorker() const override;
-        std::string getSpeciality() const override;
-
+    unsigned int passengersPerWorker() const override;
+    std::string getSpeciality() const override;
 };
 #endif
