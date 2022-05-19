@@ -17,3 +17,5 @@ NegativePriceException::NegativePriceException() : std::invalid_argument("Negati
 InvalidPassenger::InvalidPassenger() : std::invalid_argument("This passenger is already on this flight") {}
 
 NoSpaceException::NoSpaceException() : std::invalid_argument("This flight is full.") {}
+
+DateException::DateException() : std::invalid_argument("Invalid Date format") {}

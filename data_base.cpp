@@ -201,7 +201,7 @@ void DataBase::assignPassengers()
     std::uniform_int_distribution<int> distribution2(1, 2);
     for (auto &flight : flights)
     {
-        std::uniform_int_distribution<int> distribution1(2, flight.get_plane().get_sitting_places());
+        std::uniform_int_distribution<int> distribution1(4, flight.get_plane().get_sitting_places());
         int random_num_of_passnegers = distribution1(mt);
 
         for (int i = 0; i < random_num_of_passnegers; i++)

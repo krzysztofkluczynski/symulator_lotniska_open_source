@@ -42,6 +42,57 @@ void Interface::ask()
     }
 }
 
+void Interface::change_seats()
+{
+    random_device rd;
+    mt19937 mt(rd());
+    for (auto flight : db.flights)
+    {
+    if(flight.get_date() == current_date)
+        {
+            std::uniform_int_distribution<int> distribution(0, flight.get_second_class().size() - 1);
+            int person_who_changed_seats = distribution(mt);
+            SecondClass random_person = flight.get_second_class()[person_who_changed_seats];
+            flight.remove_passenger(random_person.getPesel());
+            flight.add_first_class(FirstClass(random_person.getName(), random_person.getSurname(), random_person.getPesel(), FirstClassTicket(random_person.getSourceCity(), random_person.getDestinationCity(),random_person.getDate() ,random_person.getTicket().getNumber())));
+            cout << random_person.getName() << " " << random_person.getSurname() << " changed from second class to first class." << endl;
+            sleep_for(1500ms);
+        }
+    }
+}
+
+// void Interface::cancel()
+// {
+//     cout << endl;
+//     random_device rd;
+//     mt19937 mt(rd());
+
+//     std::uniform_int_distribution<int> distribution1(0, 1);
+
+//     for (auto flight : db.flights)
+//     {
+//     if(flight.get_date() == current_date)
+//         {
+//             int if_someone_cancelled = distribution1(mt);
+//             if(if_someone_cancelled)
+//             {
+//             std::uniform_int_distribution<int> distribution2(0, flight.get_second_class().size() - 1);
+//             std::uniform_int_distribution<int> distribution3(0, flight.get_first_class().size() - 1);
+//             int person_who_changed_seats_first = distribution2(mt);
+//             int person_who_changed_seats_second = distribution3(mt);
+//             SecondClass cancel_second = flight.get_second_class()[person_who_changed_seats_second];
+//             FirstClass cancel_first = flight.get_first_class()[person_who_changed_seats_first];
+//             flight.remove_passenger(cancel_first.getPesel());
+//             flight.remove_passenger(cancel_second.getPesel());
+//             sleep_for(500ms);
+//             cout << cancel_first.getName() << " " << cancel_first.getSurname() << " cancelled his/her flight." << endl;
+//             sleep_for(1500ms);
+//             cout << cancel_second.getName() << " " << cancel_second.getSurname() << " cancelled his/her flight." << endl;
+//             sleep_for(2500ms);
+//             }
+//         }
+//     }
+// }
 
 void Interface::run()
 {
@@ -51,6 +102,8 @@ void Interface::run()
              << "TODAY DATE: " << current_date << endl
              << endl;
         sleep_for(1000ms);
+
+
         for (auto &passenger : db.passengers)
         {
             if (passenger->getDate() == current_date)
@@ -59,6 +112,11 @@ void Interface::run()
                 sleep_for(500ms);
             }
         }
+        cout << endl << endl;
+        sleep_for(1500ms);
+
+        change_seats();
+        // cancel();
 
         cout << endl
              << endl

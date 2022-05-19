@@ -56,4 +56,10 @@ class NoSpaceException : public std::invalid_argument
 public:
     NoSpaceException();
 };
+
+class  DateException: public std::invalid_argument
+{
+public:
+    DateException();
+};
 #endif

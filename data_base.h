@@ -1,6 +1,6 @@
 #ifndef DATA_BASE_H
 #define DATA_BASE_H
-
+#include "exceptions.h"
 #include <fstream>
 #include <string>
 #include <memory>

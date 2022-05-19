@@ -8,28 +8,28 @@ Date::Date(unsigned int p_day, unsigned int p_month, unsigned int p_year)
     : day(p_day), month(p_month), year(p_year)
 {
     if (!isValid())
-        throw "Invalid date input!";
+        throw DateException();
 }
 
 void Date::setYear(unsigned int p_year)
 {
     year = p_year;
     if (!isValid())
-        throw "Invalid year input!";
+        throw DateException();
 }
 
 void Date::setMonth(unsigned int p_month)
 {
     month = p_month;
     if (!isValid())
-        throw "Invalid month input!";
+        throw DateException();
 }
 
 void Date::setDay(unsigned int p_day)
 {
     day = p_day;
     if (!isValid())
-        throw "Invalid day input!";
+        throw DateException();
 }
 
 unsigned int Date::getDay() const

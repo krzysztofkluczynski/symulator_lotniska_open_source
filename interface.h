@@ -18,6 +18,8 @@ public:
         Date stop_date = Date(9, 5, 2020));
 
     void ask();
+    void change_seats();
+    void cancel();
 
     Date getStopDate() const;
     Date getCurrentDate() const;
