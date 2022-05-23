@@ -42,24 +42,27 @@ void Interface::ask()
     }
 }
 
-// void Interface::change_seats()
-// {
-//     random_device rd;
-//     mt19937 mt(rd());
-//     for (auto flight : db.flights)
-//     {
-//     if(flight.get_date() == current_date)
-//         {
-//             std::uniform_int_distribution<int> distribution(0, flight.get_second_class().size() - 1);
-//             int person_who_changed_seats = distribution(mt);
-//             SecondClass random_person = flight.get_second_class()[person_who_changed_seats];
-//             flight.remove_passenger(random_person.getPesel());
-//             flight.add_first_class(FirstClass(random_person.getName(), random_person.getSurname(), random_person.getPesel(), FirstClassTicket(random_person.getSourceCity(), random_person.getDestinationCity(),random_person.getDate() ,random_person.getTicket().getNumber())));
-//             cout << random_person.getName() << " " << random_person.getSurname() << " changed from second class to first class." << endl;
-//             //sleep_for(1500ms);
-//         }
-//     }
-// }
+void Interface::change_seats()
+{
+    random_device rd;
+    mt19937 mt(rd());
+    for (auto flight : db.flights)
+    {
+    if(flight.get_date() == current_date)
+        {
+            if (flight.get_second_class().size() > 0)
+            {
+            std::uniform_int_distribution<int> distribution(0, flight.get_second_class().size() - 1);
+            int person_who_changed_seats = distribution(mt);
+            SecondClass random_person = flight.get_second_class()[person_who_changed_seats];
+            flight.remove_passenger(random_person.getPesel());
+            flight.add_first_class(FirstClass(random_person.getName(), random_person.getSurname(), random_person.getPesel(), FirstClassTicket(random_person.getSourceCity(), random_person.getDestinationCity(),random_person.getDate() ,random_person.getTicket().getNumber())));
+            cout << random_person.getName() << " " << random_person.getSurname() << " changed from second class to first class." << endl;
+            //sleep_for(1500ms);
+            }
+        }
+    }
+}
 
 // void Interface::cancel()
 // {
@@ -115,7 +118,7 @@ void Interface::run()
         cout << endl << endl;
         //sleep_for(1500ms);
 
-        // change_seats();
+        change_seats();
         // cancel();
 
         cout << endl
@@ -130,8 +133,22 @@ void Interface::run()
                 cout << "Plane " << flight.get_plane().get_plane_name() << " took of from " << flight.get_departure().getName() << " to " << flight.get_arrival().getName() << endl;
                 //sleep_for(1000ms);
                 cout << "Capacity: " << flight.get_first_class().size() + flight.get_second_class().size() << " / " << flight.get_plane().get_sitting_places() << endl << endl;
-                cout << "Base price of this flight: " << flight.get_second_class()[0].getTicket().getRealPrice();
-                cout << "First class price of this flight: " << flight.get_first_class()[0].getTicket().getRealPrice();
+                if (flight.get_second_class().size() > 0)
+                {
+                    cout << "Base price of this flight: " << flight.get_second_class()[0].getTicket().getRealPrice() << endl;
+                }
+                else
+                {
+                    cout << "Base price of this flight: " << flight.get_first_class()[0].getTicket().getBasePrice() << endl; 
+                }
+                if (flight.get_first_class().size() > 0)
+                {
+                    cout << "First Class price of this flight: " << flight.get_first_class()[0].getTicket().getRealPrice() << endl;
+                }
+                else
+                {
+                    cout << "First Class price of this flight: " << flight.get_second_class()[0].getTicket().getBasePrice() * 1.25f << endl; 
+                }
                 //sleep_for(3000ms);
                 cout << "Workers on this flight:" << endl << "Stweardesses: ";
                 for (auto person : flight.get_stewardess())

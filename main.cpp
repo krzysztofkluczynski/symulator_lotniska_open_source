@@ -22,26 +22,33 @@ int main(int argc, char *argv[])
     string workers_path = "source/workers.txt";
     string flights_path = "source/flights.txt";
 
-    if (argc == 3)
+    try 
     {
-        people_path = argv[1];
-        workers_path = argv[2];
-        flights_path = argv[3];
-    }
+        if (argc == 4)
+        {
+            people_path = argv[1];
+            workers_path = argv[2];
+            flights_path = argv[3];
+        }
 
-    if (argc != 1 && argc != 4)
+        if (argc != 1 && argc != 4)
+        {
+            throw FileException();
+        }
+    }
+    catch(const std::exception &e)
     {
-        throw InvalidInput();
+        cerr << e.what() << endl;
+        return 0; 
     }
-
-    cout << endl << "Simulation starting" << endl;
-    sleep_for(100ms);
-    cout << "-------------------------------------------------" << endl << endl;
 
     try
     {
         DataBase db(people_path, workers_path, flights_path);
         Interface interface(db);
+        cout << endl << "Simulation starting" << endl;
+        sleep_for(100ms);
+        cout << "-------------------------------------------------" << endl << endl;
         interface.ask();
         interface.run();
     }

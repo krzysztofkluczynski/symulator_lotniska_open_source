@@ -112,9 +112,8 @@ FirstClassTicket::FirstClassTicket(City source, City destination, Date date, uns
 
 Price FirstClassTicket::getRealPrice() const
 {
-    int gr_price = 1.2f * (base_price.getZl()*100) + base_price.getGr();
+    int gr_price = 1.25f * (base_price.getZl()*100) + base_price.getGr();
     return Price(gr_price / 100, gr_price % 100);
-    ;return base_price * 1.2f;
 }
 
 SecondClassTicket::SecondClassTicket(City source, City destination, Date date, unsigned int num)
