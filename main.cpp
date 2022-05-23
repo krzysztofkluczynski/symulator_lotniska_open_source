@@ -18,9 +18,9 @@ using namespace std::chrono;
 
 int main(int argc, char *argv[])
 {
-    string people_path = "people.txt";
-    string workers_path = "workers.txt";
-    string flights_path = "flights_path";
+    string people_path = "source/people.txt";
+    string workers_path = "source/workers.txt";
+    string flights_path = "source/flights.txt";
 
     if (argc == 3)
     {
@@ -29,27 +29,27 @@ int main(int argc, char *argv[])
         flights_path = argv[3];
     }
 
-    if (argc != 1 && argc != 3)
+    if (argc != 1 && argc != 4)
     {
         throw InvalidInput();
     }
 
-    DataBase db("people.txt", "workers.txt", "flights.txt");
-    Interface interface(db);
+    cout << endl << "Simulation starting" << endl;
+    sleep_for(100ms);
+    cout << "-------------------------------------------------" << endl << endl;
+
     try
     {
+        DataBase db(people_path, workers_path, flights_path);
+        Interface interface(db);
         interface.ask();
+        interface.run();
     }
     catch (const std::exception &e)
     {
         std::cerr << e.what() << '\n';
         return 0;
     }
-    cout << endl << "Simulation starting" << endl;
-    sleep_for(100ms);
-    cout << "-------------------------------------------------" << endl << endl;
-
-    interface.run();
 
     return 0;
 }

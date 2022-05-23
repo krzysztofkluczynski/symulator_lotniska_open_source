@@ -19,3 +19,5 @@ InvalidPassenger::InvalidPassenger() : std::invalid_argument("This passenger is 
 NoSpaceException::NoSpaceException() : std::invalid_argument("This flight is full.") {}
 
 DateException::DateException() : std::invalid_argument("Invalid Date format") {}
+
+FileException::FileException() : std::invalid_argument("Invalid files") {}

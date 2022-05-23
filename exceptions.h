@@ -62,4 +62,10 @@ class  DateException: public std::invalid_argument
 public:
     DateException();
 };
+
+class  FileException: public std::invalid_argument
+{
+public:
+    FileException();
+};
 #endif

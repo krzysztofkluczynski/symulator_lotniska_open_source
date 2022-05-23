@@ -20,7 +20,7 @@ void DataBase::import_passengers()
     fstream file;
     file.open(people_path, ios::in);
     if (!file.good())
-        throw "invalid file";
+        throw FileException();
 
     string name, surname, pesel;
 
@@ -39,7 +39,7 @@ void DataBase::import_workers()
     fstream file;
     file.open(workers_path, ios::in);
     if (!file.good())
-        throw "invalid file";
+        throw FileException();
     string name, surname, pesel, type;
     unsigned int flight_num;
     while (file >> name)
@@ -109,7 +109,7 @@ void DataBase::import_flights()
     fstream file;
     file.open(flights_path, ios::in);
     if (!file.good())
-        throw "invalid file";
+        throw FileException();
     string id, day, month, year, departure, arrival, p_name, p_type;
     while (file >> id)
     {
@@ -201,8 +201,33 @@ void DataBase::assignPassengers()
     std::uniform_int_distribution<int> distribution2(1, 2);
     for (auto &flight : flights)
     {
-        std::uniform_int_distribution<int> distribution1(4, flight.get_plane().get_sitting_places());
+        std::uniform_int_distribution<int> distribution1(10, flight.get_plane().get_sitting_places());  //losowanie liczby miejsc w samolocie
         int random_num_of_passnegers = distribution1(mt);
+
+
+        // std::uniform_int_distribution<int> distribution3(0, people.size());
+        // int random_person_num = distribution3(mt);
+        // Person random_person = people[random_person_num];
+        // for (std::vector<Person>::iterator iter = people.begin(); iter != people.end(); ++iter) // usuwanie czlowieka o danym peselu, moze mozna latwiej
+        // {
+        //     if ((*iter).getPesel() == random_person.getPesel())
+        //     {
+        //         people.erase(iter);
+        //         break;
+        //     }
+        // }
+        // FirstClassTicket ticket(flight.get_departure(), flight.get_arrival(), flight.get_date(), flight.get_id());
+        // FirstClass passenger(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
+
+        // flight.add_first_class(passenger);
+
+        // std::shared_ptr<FirstClass> passager = std::make_shared<FirstClass>(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
+        // passengers.push_back(std::move(passager));
+
+
+        // std::uniform_int_distribution<int> distribution3(0, people.size());
+        // int random_person_num = distribution3(mt);
+        // Person random_person = people[random_person_num];
 
         for (int i = 0; i < random_num_of_passnegers; i++)
         {
@@ -212,8 +237,6 @@ void DataBase::assignPassengers()
             int random_person_num = distribution3(mt);
 
             Person random_person = people[random_person_num];
-
-
 
             for (std::vector<Person>::iterator iter = people.begin(); iter != people.end(); ++iter) // usuwanie czlowieka o danym peselu, moze mozna latwiej
             {
