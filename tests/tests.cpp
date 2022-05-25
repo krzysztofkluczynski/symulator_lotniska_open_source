@@ -198,21 +198,21 @@ TEST_CASE("planes", "[planes]") {
     SECTION("light plane getters") {
         Light_plane lp("AAAA");
         CHECK(lp.get_plane_name() == "AAAA");
-        CHECK(lp.get_sitting_places() == 30);
+        CHECK(lp.get_sitting_places() == 20);
         CHECK(lp.get_price_multiplier()==1.02f);
     }
 
     SECTION("light plane getters") {
         Small_plane lp("AAAA");
         CHECK(lp.get_plane_name() == "AAAA");
-        CHECK(lp.get_sitting_places() == 70);
+        CHECK(lp.get_sitting_places() == 60);
         CHECK(lp.get_price_multiplier()==1.018f);
     }
 
     SECTION("medium plane getters") {
         Medium_plane lp("AAAA");
         CHECK(lp.get_plane_name() == "AAAA");
-        CHECK(lp.get_sitting_places() == 15);
+        CHECK(lp.get_sitting_places() == 90);
         CHECK(lp.get_price_multiplier()==1.013f);
     }
 
