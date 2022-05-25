@@ -204,31 +204,6 @@ void DataBase::assignPassengers()
         std::uniform_int_distribution<int> distribution1(10, flight.get_plane().get_sitting_places());  //losowanie liczby miejsc w samolocie
         int random_num_of_passnegers = distribution1(mt);
 
-
-        // std::uniform_int_distribution<int> distribution3(0, people.size());
-        // int random_person_num = distribution3(mt);
-        // Person random_person = people[random_person_num];
-        // for (std::vector<Person>::iterator iter = people.begin(); iter != people.end(); ++iter) // usuwanie czlowieka o danym peselu, moze mozna latwiej
-        // {
-        //     if ((*iter).getPesel() == random_person.getPesel())
-        //     {
-        //         people.erase(iter);
-        //         break;
-        //     }
-        // }
-        // FirstClassTicket ticket(flight.get_departure(), flight.get_arrival(), flight.get_date(), flight.get_id());
-        // FirstClass passenger(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
-
-        // flight.add_first_class(passenger);
-
-        // std::shared_ptr<FirstClass> passager = std::make_shared<FirstClass>(random_person.getName(), random_person.getSurname(), random_person.getPesel(), ticket);
-        // passengers.push_back(std::move(passager));
-
-
-        // std::uniform_int_distribution<int> distribution3(0, people.size());
-        // int random_person_num = distribution3(mt);
-        // Person random_person = people[random_person_num];
-
         for (int i = 0; i < random_num_of_passnegers; i++)
         {
             std::uniform_int_distribution<int> distribution3(0, people.size());

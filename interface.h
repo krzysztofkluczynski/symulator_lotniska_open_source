@@ -19,7 +19,6 @@ public:
 
     void ask();
     void change_seats();
-    void cancel();
 
     Date getStopDate() const;
     Date getCurrentDate() const;

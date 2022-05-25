@@ -58,44 +58,12 @@ void Interface::change_seats()
             flight.remove_passenger(random_person.getPesel());
             flight.add_first_class(FirstClass(random_person.getName(), random_person.getSurname(), random_person.getPesel(), FirstClassTicket(random_person.getSourceCity(), random_person.getDestinationCity(),random_person.getDate() ,random_person.getTicket().getNumber())));
             cout << random_person.getName() << " " << random_person.getSurname() << " changed from second class to first class." << endl;
-            //sleep_for(1500ms);
+            sleep_for(1500ms);
             }
         }
     }
 }
 
-// void Interface::cancel()
-// {
-//     cout << endl;
-//     random_device rd;
-//     mt19937 mt(rd());
-
-//     std::uniform_int_distribution<int> distribution1(0, 1);
-
-//     for (auto flight : db.flights)
-//     {
-//     if(flight.get_date() == current_date)
-//         {
-//             int if_someone_cancelled = distribution1(mt);
-//             if(if_someone_cancelled)
-//             {
-//             std::uniform_int_distribution<int> distribution2(0, flight.get_second_class().size() - 1);
-//             std::uniform_int_distribution<int> distribution3(0, flight.get_first_class().size() - 1);
-//             int person_who_changed_seats_first = distribution2(mt);
-//             int person_who_changed_seats_second = distribution3(mt);
-//             SecondClass cancel_second = flight.get_second_class()[person_who_changed_seats_second];
-//             FirstClass cancel_first = flight.get_first_class()[person_who_changed_seats_first];
-//             flight.remove_passenger(cancel_first.getPesel());
-//             flight.remove_passenger(cancel_second.getPesel());
-//             sleep_for(500ms);
-//             cout << cancel_first.getName() << " " << cancel_first.getSurname() << " cancelled his/her flight." << endl;
-//             sleep_for(1500ms);
-//             cout << cancel_second.getName() << " " << cancel_second.getSurname() << " cancelled his/her flight." << endl;
-//             sleep_for(2500ms);
-//             }
-//         }
-//     }
-// }
 
 void Interface::run()
 {
@@ -104,7 +72,7 @@ void Interface::run()
         cout << endl
              << "TODAY DATE: " << current_date << endl
              << endl;
-        //sleep_for(1000ms);
+        sleep_for(1000ms);
 
 
         for (auto &passenger : db.passengers)
@@ -112,14 +80,13 @@ void Interface::run()
             if (passenger->getDate() == current_date)
             {
                 cout << passenger->getName() << " " << passenger->getSurname() << " buys ticket for flight with id: " << passenger->getFlightId() << " from " << passenger->getSourceCity().getName() << " to " << passenger->getDestinationCity().getName() << "." << endl;
-                //sleep_for(300ms);
+                sleep_for(100ms);
             }
         }
         cout << endl << endl;
-        //sleep_for(1500ms);
+        sleep_for(1500ms);
 
         change_seats();
-        // cancel();
 
         cout << endl
              << endl
@@ -131,58 +98,66 @@ void Interface::run()
             if (flight.get_date() == current_date)
             {
                 cout << "Plane " << flight.get_plane().get_plane_name() << " took of from " << flight.get_departure().getName() << " to " << flight.get_arrival().getName() << endl;
-                //sleep_for(1000ms);
-                cout << "Capacity: " << flight.get_first_class().size() + flight.get_second_class().size() << " / " << flight.get_plane().get_sitting_places() << endl << endl;
+                sleep_for(3000ms);
+                cout << "Capacity: " << flight.get_first_class().size() + flight.get_second_class().size() << " / " << flight.get_plane().get_sitting_places() << endl;
+                sleep_for(3000ms);
                 if (flight.get_second_class().size() > 0)
                 {
-                    cout << "Base price of this flight: " << flight.get_second_class()[0].getTicket().getRealPrice() << endl;
+                    cout << "Base price of this flight: " << flight.get_second_class()[0].getTicket().getRealPrice();
+                    sleep_for(500ms);
                 }
                 else
                 {
-                    cout << "Base price of this flight: " << flight.get_first_class()[0].getTicket().getBasePrice() << endl; 
+                    cout << "Base price of this flight: " << flight.get_first_class()[0].getTicket().getBasePrice();
+                    sleep_for(500ms);
+ 
                 }
                 if (flight.get_first_class().size() > 0)
                 {
                     cout << "First Class price of this flight: " << flight.get_first_class()[0].getTicket().getRealPrice() << endl;
+                    sleep_for(500ms);
                 }
                 else
                 {
                     cout << "First Class price of this flight: " << flight.get_second_class()[0].getTicket().getBasePrice() * 1.25f << endl; 
+                    sleep_for(500ms);
                 }
                 //sleep_for(3000ms);
-                cout << "Workers on this flight:" << endl << "Stweardesses: ";
+                cout << "Workers on this flight:" << endl;
+                sleep_for(600ms);
+                cout << "Stweardesses: ";
                 for (auto person : flight.get_stewardess())
                 {
                     cout << person.getName() << " " << person.getSurname() << ", ";
-                    //sleep_for(50ms);
+                    sleep_for(1000ms);
                 }
                 cout << endl <<"Luggage men: ";
                 for (auto person : flight.get_luggage_man())
                 {
                     cout << person.getName() << " " << person.getSurname() << ", ";
-                    //sleep_for(50ms);
+                    sleep_for(1000ms);
                 }
                 cout << endl <<"Pilots: ";
                 for (auto person : flight.get_pilot())
                 {
                     cout << person.getName() << " " << person.getSurname() << ", ";
-                    //sleep_for(50ms);
+                    sleep_for(1000ms);
 
                 }
                 cout << endl <<"Other: ";
                 for (auto person : flight.get_other())
                 {
                     cout << person.getName() << " " << person.getSurname() << ", ";
-                    //sleep_for(50ms);
+                    sleep_for(1000ms);
 
                 }
                 cout << endl << endl;
-                //sleep_for(2000ms);
+                sleep_for(1000ms);
             }
         }
         current_date++;
         cout << endl;
         cout << "------------- END OF THE DAY ---------------" << endl;
-        //sleep_for(500ms);
+        sleep_for(500ms);
     }
 }
